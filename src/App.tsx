@@ -9,7 +9,7 @@ import {
   IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { business, calendarSharp, chatbubblesSharp, hammer, key, notifications } from 'ionicons/icons';
 import Tab0 from './pages/Tab0';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
@@ -65,27 +65,27 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab0" href="/tab0">
-            <IonIcon icon={square} />
+            <IonIcon icon={key} />
             <IonLabel>Login</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
+            <IonIcon icon={notifications} />
             <IonLabel>Notifications</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
+            <IonIcon icon={calendarSharp} />
             <IonLabel>Reserve</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
+            <IonIcon icon={chatbubblesSharp} />
             <IonLabel>Meeting Room</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab4" href="/tab4">
-            <IonIcon icon={ellipse} />
+            <IonIcon icon={hammer} />
             <IonLabel>Fault Report</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab5" href="/tab5">
-            <IonIcon icon={triangle} />
+            <IonIcon icon={business} />
             <IonLabel>Property Info</IonLabel>
           </IonTabButton>
         </IonTabBar>
