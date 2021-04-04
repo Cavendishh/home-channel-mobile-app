@@ -11,11 +11,25 @@ import { IonContent,
   IonRow,
   IonCol,
   IonIcon,
-
 } from '@ionic/react'
 import { arrowBackOutline, arrowForwardOutline, calendar } from 'ionicons/icons'
+import Button from '../components/Button'
 
-const testfnc = () => console.log('Test fnc is working!')
+
+const testfnc = () => console.log('It works!')
+
+const makeReservation = (e: any) =>{
+  e.preventDefault()
+
+  if (e.target.textContent === 'RESERVED') {
+    e.target.textContent = 'VACANT'
+    e.target.color = 'secondary'
+  } else {
+    e.target.textContent = 'RESERVED'
+    e.target.color = 'danger'
+  }
+}
+
 
 const Tab2: React.FC = () => {
   const [date, setDate] = useState('')
@@ -91,6 +105,7 @@ const Tab2: React.FC = () => {
             <IonIcon icon={calendar} />
             <IonIcon icon={arrowForwardOutline} />
             <IonButton color='secondary' onClick={increaseDate}>+</IonButton>
+            <IonButton color='primary'>TEST</IonButton>
             </IonCol>
           </IonRow>
 
@@ -105,9 +120,25 @@ const Tab2: React.FC = () => {
             <IonCol className='div1'>Time</IonCol>
             <IonCol className='div2'>Washer 1</IonCol>
             <IonCol className='div1'>Washer 2</IonCol>
-            <IonCol className='div2'>Washer 3</IonCol>
           </IonRow>
 
+          <IonRow>
+            <IonCol>8.00</IonCol>
+            <IonCol><IonButton color='secondary' onClick={makeReservation}>VACANT</IonButton></IonCol>
+            <IonCol><IonButton color='secondary' onClick={makeReservation}>VACANT</IonButton></IonCol>
+          </IonRow>
+
+          <IonRow>
+            <IonCol>9.00</IonCol>
+            <IonCol><IonButton color='secondary' onClick={makeReservation}>VACANT</IonButton></IonCol>
+            <IonCol><IonButton color='secondary' onClick={makeReservation}>VACANT</IonButton></IonCol>
+          </IonRow>
+
+          <IonRow>
+            <IonCol>10.00</IonCol>
+            <IonCol><IonButton color='secondary' onClick={makeReservation}>VACANT</IonButton></IonCol>
+            <IonCol><IonButton color='secondary' onClick={makeReservation}>VACANT</IonButton></IonCol>
+          </IonRow>
 
         </IonGrid>
       </IonContent>
