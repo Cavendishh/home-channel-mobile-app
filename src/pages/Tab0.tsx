@@ -14,7 +14,7 @@ import {
   IonButton,
   IonItemDivider,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
+
 import "./Tab0.css";
 
 import "@ionic/react/css/core.css";
@@ -40,7 +40,8 @@ const Tab0: React.FC = () => {
       </IonHeader>
       <IonContent className="ion-padding">
         <IonGrid>
-        <img src="../assets/img/test.jpg"/>
+       
+        <img alt="building" src="../assets/img/test.jpg"/>
           <IonRow>
             <IonCol>
               <IonItemDivider>
