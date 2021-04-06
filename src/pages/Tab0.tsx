@@ -109,11 +109,7 @@ const Tab0: React.FC = () => {
             Register
           </IonButton>
 
-          <IonHeader collapse="condense">
-            <IonToolbar>
-              <IonTitle size="large">Login</IonTitle>
-            </IonToolbar>
-          </IonHeader>
+          
         </IonGrid>
       </IonContent>
     </IonPage>
