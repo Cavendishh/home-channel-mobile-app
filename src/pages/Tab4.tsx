@@ -1,4 +1,4 @@
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonModal, IonPage, IonTextarea, IonTitle, IonToolbar, IonToggle } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonModal, IonPage, IonTextarea, IonTitle, IonToolbar, IonToggle, IonGrid, IonRow } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import React, { useState } from 'react';
 import './Tab4.css';
@@ -6,6 +6,7 @@ import { attachOutline, cameraOutline, micOutline } from 'ionicons/icons';
 
 const Tab4: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
+  const [boolean, setBoolean] = useState(true);
   const [text, setText] = useState<string>();
 
 
@@ -26,45 +27,49 @@ const Tab4: React.FC = () => {
 {/*--   Modal - how to change visibility on "write message" and "record message"? Toggles are not defined??  --*/}
 
         <IonModal isOpen={showModal}>
-          <IonHeader>
+        <IonHeader>
             <IonToolbar>
               <IonTitle>New fault report</IonTitle>
             </IonToolbar>
           </IonHeader>
-          <IonItem>
-            <IonLabel position="stacked">
-              Title
-            </IonLabel>
-            <IonInput value={text} placeholder="Eg. Broken stove" onIonChange={e => setText(e.detail.value!)}>
-            </IonInput>
-          </IonItem>
-          <IonButton>Write message</IonButton>
-          <IonButton >Record message</IonButton>
-          <IonItem>
-            <IonTextarea placeholder="Leave your message here">
-            </IonTextarea>
-          </IonItem>
-          <IonItem>
-            <IonIcon icon={micOutline} size="large"></IonIcon>
-          </IonItem>
-          <IonList>
-            <IonItem>
+          <IonGrid>
+            <IonRow>
+                <IonLabel position="stacked">
+                  Title
+                </IonLabel>
+                <IonInput value={text} placeholder="Eg. Broken stove" onIonChange={e => setText(e.detail.value!)}>
+                </IonInput>
+            </IonRow>
+            <IonRow>
+            <IonButton onClick={() => setBoolean(true)}>Write message</IonButton>
+            <IonButton onClick={() => setBoolean(false)}>Record message</IonButton>
+            </IonRow>
+            <IonRow>
+              {boolean && <IonTextarea placeholder="Leave your message here">
+              </IonTextarea>}
+            </IonRow>
+            <IonRow>
+             {!boolean && <IonIcon icon={micOutline} size="large"></IonIcon>}
+            </IonRow>
+            <IonRow>
               Add image
               <IonIcon icon={attachOutline} size="large"></IonIcon>
               <IonIcon icon={cameraOutline} size="large"></IonIcon>
-            </IonItem>
-            <IonItem>
+            </IonRow>
+            <IonRow>
               Enter with master key?
               <IonToggle></IonToggle>
-            </IonItem>
-            <IonItem>
+            </IonRow>
+            <IonRow>
               Call before entering?
               <IonToggle></IonToggle>
-            </IonItem>
-          </IonList>
-          <IonButton onClick={() => setShowModal(false)}>
-            Send
-          </IonButton>
+            </IonRow>
+            <IonRow>
+              <IonButton onClick={() => setShowModal(false)}>
+              Send
+              </IonButton>
+            </IonRow>
+          </IonGrid>         
         </IonModal>
 
         <IonCard>
