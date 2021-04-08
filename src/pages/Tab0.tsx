@@ -16,8 +16,10 @@ import {
 } from "@ionic/react";
 
 import "./Tab0.css";
+import { Controller, useForm } from 'react-hook-form';
 
-import "@ionic/react/css/core.css";
+
+/*import "@ionic/react/css/core.css";
 
 import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
@@ -28,7 +30,7 @@ import "@ionic/react/css/float-elements.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
+import "@ionic/react/css/display.css";*/
 
 const Tab0: React.FC = () => {
   return (
@@ -108,8 +110,6 @@ const Tab0: React.FC = () => {
           <IonButton color="secondary" expand="block">
             Register
           </IonButton>
-
-          
         </IonGrid>
       </IonContent>
     </IonPage>
