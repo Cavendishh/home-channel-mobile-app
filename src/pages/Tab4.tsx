@@ -1,16 +1,41 @@
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonModal, IonPage, IonTextarea, IonTitle, IonToolbar, IonToggle, IonGrid, IonRow } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import './Tab4.css';
 import { attachOutline, cameraOutline, micOutline } from 'ionicons/icons';
 
+
+
+/* Irina testaa */
+export interface Ilmoitus {
+  id: number;
+  text: string;
+  content: string;
+}
+
+
+
 const Tab4: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const [boolean, setBoolean] = useState(true);
+  const [showElement, setShowElement] = useState(true);
   const [text, setText] = useState<string>();
+  const [content, setContent] = useState<string>();
+  const [ilmoitukset, setIlmoitukset] = useState<Ilmoitus[]>([]);
 
+  const addIlmoitus = () => {
+    const nextID = Math.random()
+    const item: Ilmoitus = {
+      id: nextID,
+      text: text,
+      content: content
+    };
+    setIlmoitukset([...ilmoitukset, item]);
+    setShowModal(false);
+    setText('');
+    setContent('');
+  }
+ 
 
-/*--   Tähän pitäisi tulla ne consteina eri toiminnot, kuten addItem. Tee uuden ilmoituksen lisääminen Modalin avulla --*/
   return (
     <IonPage>
       <IonHeader>
@@ -20,13 +45,72 @@ const Tab4: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
 
-        <IonButton onClick={() => setShowModal(true)}>
-              Add new
-        </IonButton>
+        <IonGrid>
+          <IonRow>
+            <IonButton onClick={() => setShowModal(true)}>Add new</IonButton>
+          </IonRow>
 
-{/*--   Modal - how to change visibility on "write message" and "record message"? Toggles are not defined??  --*/}
+{/* testiä */}
+          <IonRow>
 
-        <IonModal isOpen={showModal}>
+          {ilmoitukset.length > 0 && (
+            <IonList>
+              {ilmoitukset.map((lista, i) => (
+                <IonItem key={i}>
+                  <IonLabel>
+                    <h2>{lista.text}</h2>
+                  </IonLabel>
+                  <p>{lista.content}</p>
+                </IonItem>
+              ))}
+            </IonList>
+          )}
+
+{/* testi loppuu */}
+{/*
+
+            <IonCard>   
+              <IonCardHeader>
+                <IonCardTitle>
+                  Leaking waterpipe
+                </IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>
+                Tässä tulee olemaan kortteina tehdyt ilmoitukset.
+              </IonCardContent>
+            </IonCard> 
+          </IonRow>
+          <IonRow>
+            <IonCard>
+              <IonCardHeader>
+                <IonCardTitle>
+                  <IonInput value={text} onIonChange={e => setText(e.detail.value!)}></IonInput>
+                </IonCardTitle>
+              </IonCardHeader>
+              <IonCardContent>
+                Jotain sisältöä tässäkin kortissa
+              </IonCardContent>
+            </IonCard>
+*/}
+          </IonRow>
+          <IonRow>
+            <div>
+              <h3>Emergency contact details</h3>
+              <p>In case of emergency for ex. severely leaking water pipe or dangerous elecrical fault.</p>
+              <p>24/7</p>
+              <p>+358 123 456 789</p>
+            </div>
+          </IonRow>
+          <IonRow>
+     
+          </IonRow>
+        </IonGrid>
+
+               
+
+{/*--   Modal --*/}
+
+<IonModal isOpen={showModal}>
         <IonHeader>
             <IonToolbar>
               <IonTitle>New fault report</IonTitle>
@@ -37,19 +121,19 @@ const Tab4: React.FC = () => {
                 <IonLabel position="stacked">
                   Title
                 </IonLabel>
-                <IonInput value={text} placeholder="Eg. Broken stove" onIonChange={e => setText(e.detail.value!)}>
+                <IonInput id="item" value={text} placeholder="Eg. Broken stove" onIonChange={e => setText(e.detail.value!)}>
                 </IonInput>
             </IonRow>
             <IonRow>
-            <IonButton onClick={() => setBoolean(true)}>Write message</IonButton>
-            <IonButton onClick={() => setBoolean(false)}>Record message</IonButton>
+            <IonButton onClick={() => setShowElement(true)}>Write message</IonButton>
+            <IonButton onClick={() => setShowElement(false)}>Record message</IonButton>
             </IonRow>
             <IonRow>
-              {boolean && <IonTextarea placeholder="Leave your message here">
+              {showElement && <IonTextarea id="item" value={content} placeholder="Leave your message here" onIonChange={e => setContent(e.detail.value!)}>
               </IonTextarea>}
             </IonRow>
             <IonRow>
-             {!boolean && <IonIcon icon={micOutline} size="large"></IonIcon>}
+             {!showElement && <IonIcon icon={micOutline} size="large"></IonIcon>}
             </IonRow>
             <IonRow>
               Add image
@@ -60,44 +144,20 @@ const Tab4: React.FC = () => {
               Enter with master key?
               <IonToggle></IonToggle>
             </IonRow>
+            
             <IonRow>
               Call before entering?
               <IonToggle></IonToggle>
             </IonRow>
             <IonRow>
-              <IonButton onClick={() => setShowModal(false)}>
+              <IonButton onClick={addIlmoitus }>
               Send
               </IonButton>
             </IonRow>
           </IonGrid>         
         </IonModal>
 
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>
-              Leaking waterpipe
-            </IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
-            Tässä tulee olemaan kortteina tehdyt ilmoitukset.
-          </IonCardContent>
-        </IonCard>
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>
-              Jotain
-            </IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
-            Jotain sisältöä tässäkin kortissa
-          </IonCardContent>
-        </IonCard> 
-        <div>
-          <h3>Emergency contact details</h3>
-          <p>In case of emergency for ex. severely leaking water pipe or dangerous elecrical fault.</p>
-          <p>24/7</p>
-          <p>+358 123 456 789</p>
-        </div>
+
       </IonContent>
 
     </IonPage>
