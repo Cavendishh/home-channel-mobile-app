@@ -12,9 +12,7 @@ import { IonReactRouter } from '@ionic/react-router'
 import { business, calendarSharp, chatbubblesSharp, hammer, key, notifications } from 'ionicons/icons'
 import Tab0 from './pages/Tab0'
 import Tab1 from './pages/Tab1'
-import ReserveWasher from './pages/ReserveWasher'
-import ReserveDryer from './pages/ReserveDryer'
-import ReserveSauna from './pages/ReserveSauna'
+import Reserve from './pages/Reserve'
 import Tab3 from './pages/Tab3'
 import Tab4 from './pages/Tab4'
 import Tab5 from './pages/Tab5'
@@ -49,14 +47,8 @@ const App: React.FC = () => (
           <Route exact path="/tab1">
             <Tab1 />
           </Route>
-          <Route exact path="/reservewasher">
-            <ReserveWasher />
-          </Route>
-          <Route exact path="/reservedryer">
-            <ReserveDryer />
-          </Route>
-          <Route exact path="/reservesauna">
-            <ReserveSauna />
+          <Route exact path="/reserve">
+            <Reserve />
           </Route>
           <Route exact path="/tab3">
             <Tab3 />
@@ -80,7 +72,7 @@ const App: React.FC = () => (
             <IonIcon icon={notifications} />
             <IonLabel>Notifications</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="reservewasher" href="/reservewasher">
+          <IonTabButton tab="reserve" href="/reserve">
             <IonIcon icon={calendarSharp} />
             <IonLabel>Reserve</IonLabel>
           </IonTabButton>
