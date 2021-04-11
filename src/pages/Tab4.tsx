@@ -7,7 +7,7 @@ import { attachOutline, cameraOutline, micOutline } from 'ionicons/icons';
 
 
 /* Irina testaa */
-export interface Ilmoitus {
+export interface Report {
   id: number;
   text: string;
   content: string;
@@ -20,16 +20,18 @@ const Tab4: React.FC = () => {
   const [showElement, setShowElement] = useState(true);
   const [text, setText] = useState<string>();
   const [content, setContent] = useState<string>();
-  const [ilmoitukset, setIlmoitukset] = useState<Ilmoitus[]>([]);
+  const [reports, setReports] = useState<Report[]>([]);
+  const newReports = [...reports].reverse();
 
-  const addIlmoitus = () => {
+
+  const addReport = () => {
     const nextID = Math.random()
-    const item: Ilmoitus = {
+    const item: Report = {
       id: nextID,
       text: text,
       content: content
     };
-    setIlmoitukset([...ilmoitukset, item]);
+    setReports([...reports, item]);
     setShowModal(false);
     setText('');
     setContent('');
@@ -49,18 +51,19 @@ const Tab4: React.FC = () => {
           <IonRow>
             <IonButton onClick={() => setShowModal(true)}>Add new</IonButton>
           </IonRow>
-
-{/* testiä */}
           <IonRow>
-
-          {ilmoitukset.length > 0 && (
+          {newReports.length > 0 && (
             <IonList>
-              {ilmoitukset.map((lista, i) => (
+              {newReports.map((list, i) => (
                 <IonItem key={i}>
-                  <IonLabel>
-                    <h2>{lista.text}</h2>
-                  </IonLabel>
-                  <p>{lista.content}</p>
+                  <IonCard>
+                    <IonCardTitle>
+                      <h2>{list.text}</h2>
+                    </IonCardTitle>
+                    <IonCardContent>
+                      {list.content}
+                    </IonCardContent>
+                  </IonCard>
                 </IonItem>
               ))}
             </IonList>
@@ -150,7 +153,7 @@ const Tab4: React.FC = () => {
               <IonToggle></IonToggle>
             </IonRow>
             <IonRow>
-              <IonButton onClick={addIlmoitus }>
+              <IonButton onClick={addReport }>
               Send
               </IonButton>
             </IonRow>
