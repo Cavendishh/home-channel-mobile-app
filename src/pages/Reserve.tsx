@@ -260,7 +260,6 @@ const Reserve: React.FC = () => {
     const reserveTime = e.target.id.substring(0, 5)
     const reserveAppliance = e.target.id.substring(8)
     const reservationType = reserveAppliance.split(' ')[0]
-    console.log(reservationType);
     
     if (reservationType === 'Washer') {
       const isReserved = userReservedWashers.map((r, i) => {
@@ -387,10 +386,10 @@ const Reserve: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol>
-              <IonButton color={showLaundry ? 'danger' : 'secondary'} onClick={() => setShowLaundry(true)}>Laundry</IonButton>
+              <IonButton color={showLaundry ? 'danger' : 'secondary'} expand='block' onClick={() => setShowLaundry(true)}>Laundry</IonButton>
             </IonCol>
             <IonCol>
-              <IonButton color={showLaundry ? 'secondary' : 'danger'} onClick={() => setShowLaundry(false)}>Sauna</IonButton>
+              <IonButton color={showLaundry ? 'secondary' : 'danger'} expand='block' onClick={() => setShowLaundry(false)}>Sauna</IonButton>
             </IonCol>
           </IonRow>
           
@@ -443,27 +442,31 @@ const Reserve: React.FC = () => {
           }
          
           <IonRow>
-            <IonCol>
-            <IonIcon icon={arrowBackOutline} onClick={decreaseDate} />
-            <IonText>{date}</IonText>
-            <IonIcon icon={calendar} />
-            <IonIcon icon={arrowForwardOutline} onClick={increaseDate}/>
+            <IonCol size='3'>
+              <IonIcon icon={arrowBackOutline} onClick={decreaseDate} />
+            </IonCol>
+            <IonCol size='6'>
+              <IonText>{date}</IonText>
+              <IonIcon icon={calendar} />
+            </IonCol>
+            <IonCol size='3'>
+              <IonIcon icon={arrowForwardOutline} onClick={increaseDate}/>
             </IonCol>
           </IonRow>
 
           {!showLaundry ?
             <>
               <IonRow>
-                <IonCol>Time</IonCol>
-                <IonCol>Sauna 1</IonCol>
-                <IonCol>Sauna 2</IonCol>
+                <IonCol size='2'>Time</IonCol>
+                <IonCol size='5'>Sauna 1</IonCol>
+                <IonCol size='5'>Sauna 2</IonCol>
               </IonRow>
               {reservedSaunas.map(r => {
                 return (
                   <IonRow key={r.time}>
-                    <IonCol>{r.time}</IonCol>
-                    <IonCol><IonButton  id={r.time + ' - Sauna 1'}color={r.sauna1 === 'CLOSED' ? 'success' : 'secondary'} disabled>{r.sauna1 === 'CLOSED' ? 'CLOSED' : 'VACANT'}</IonButton></IonCol>
-                    <IonCol><IonButton  id={r.time + ' - Sauna 2'}color={r.sauna2 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.sauna2 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
+                    <IonCol size='2'>{r.time}</IonCol>
+                    <IonCol size='5'><IonButton expand='block' id={r.time + ' - Sauna 1'}color={r.sauna1 === 'CLOSED' ? 'success' : 'secondary'} disabled>{r.sauna1 === 'CLOSED' ? 'CLOSED' : 'VACANT'}</IonButton></IonCol>
+                    <IonCol size='5'><IonButton expand='block' id={r.time + ' - Sauna 2'}color={r.sauna2 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.sauna2 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
                   </IonRow>
                 )
               })}
@@ -473,23 +476,25 @@ const Reserve: React.FC = () => {
             <>
               <IonRow>
                 <IonCol>
-                  <IonButton color='danger' onClick={showAppliance}>Washer</IonButton>
-                  <IonButton color='secondary' onClick={showAppliance}>Dryer</IonButton>
+                  <IonButton color='danger' expand='block' onClick={showAppliance} >Washer</IonButton>
+                </IonCol>
+                <IonCol>
+                  <IonButton color='secondary' expand='block' onClick={showAppliance}>Dryer</IonButton>
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol>Time</IonCol>
-                <IonCol>Washer 1</IonCol>
-                <IonCol>Washer 2</IonCol>
-                <IonCol>Washer 3</IonCol>
+                <IonCol size='2'>Time</IonCol>
+                <IonCol size='3'>Washer 1</IonCol>
+                <IonCol size='3'>Washer 2</IonCol>
+                <IonCol size='3'>Washer 3</IonCol>
               </IonRow>
               {reservedWashers.map(r => {
                 return (
                   <IonRow key={r.time}>
-                    <IonCol>{r.time}</IonCol>
-                    <IonCol><IonButton id={r.time + ' - Washer 1'} color={r.washer1 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.washer1 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
-                    <IonCol><IonButton id={r.time + ' - Washer 2'} color={r.washer2 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.washer2 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
-                    <IonCol><IonButton id={r.time + ' - Washer 3'} color={r.washer3 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.washer3 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
+                    <IonCol size='2'>{r.time}</IonCol>
+                    <IonCol size='3'><IonButton expand='block' id={r.time + ' - Washer 1'} color={r.washer1 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.washer1 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
+                    <IonCol size='3'><IonButton expand='block' id={r.time + ' - Washer 2'} color={r.washer2 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.washer2 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
+                    <IonCol size='3'><IonButton expand='block' id={r.time + ' - Washer 3'} color={r.washer3 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.washer3 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
                   </IonRow>
                 )
               })}
@@ -500,23 +505,25 @@ const Reserve: React.FC = () => {
             <>
               <IonRow>
                 <IonCol>
-                  <IonButton color='secondary' onClick={showAppliance}>Washer</IonButton>
-                  <IonButton color='danger' onClick={showAppliance}>Dryer</IonButton>
+                  <IonButton color='secondary' expand='block' onClick={showAppliance} >Washer</IonButton>
+                </IonCol>
+                <IonCol>
+                  <IonButton color='danger' expand='block' onClick={showAppliance}>Dryer</IonButton>
                 </IonCol>
               </IonRow>
               <IonRow>
-                <IonCol>Time</IonCol>
-                <IonCol>Dryer 1</IonCol>
-                <IonCol>Dryer 2</IonCol>
-                <IonCol>Dryer 3</IonCol>
+                <IonCol size='2'>Time</IonCol>
+                <IonCol size='3'>Dryer 1</IonCol>
+                <IonCol size='3'>Dryer 2</IonCol>
+                <IonCol size='3'>Dryer 3</IonCol>
               </IonRow>
               {reservedDryers.map(r => {
                 return (
                   <IonRow key={r.time}>
-                    <IonCol>{r.time}</IonCol>
-                    <IonCol><IonButton id={r.time + ' - Dryer 1'} color={r.dryer1 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.dryer1 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
-                    <IonCol><IonButton id={r.time + ' - Dryer 2'} color={r.dryer2 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.dryer2 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
-                    <IonCol><IonButton id={r.time + ' - Dryer 3'} color={r.dryer3 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.dryer3 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
+                    <IonCol size='2'>{r.time}</IonCol>
+                    <IonCol size='3'><IonButton expand='block' id={r.time + ' - Dryer 1'} color={r.dryer1 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.dryer1 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
+                    <IonCol size='3'><IonButton expand='block' id={r.time + ' - Dryer 2'} color={r.dryer2 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.dryer2 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
+                    <IonCol size='3'><IonButton expand='block' id={r.time + ' - Dryer 3'} color={r.dryer3 === 'RESERVED' ? 'danger' : 'secondary'} onClick={makeReservation}>{r.dryer3 === 'RESERVED' ? 'RESERVED' : 'VACANT'}</IonButton></IonCol>
                   </IonRow>
                 )
               })}
