@@ -10,6 +10,7 @@ import {
   IonInput,
   IonItem,
   IonItemDivider,
+  IonLabel,
   IonPage,
   IonRow,
   IonTitle,
@@ -49,10 +50,15 @@ const Tab0: React.FC = () => {
       <IonContent className="ion-padding">
         <IonGrid>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <img alt="building" src="../assets/img/test.jpg" />
+
             <IonItemDivider>
-              Register using the personal code received from the property
-              manager.
+              <IonLabel className="ion-text-wrap" color="dark">
+                Register using the personal code received from the property
+                manager.
+              </IonLabel>
             </IonItemDivider>
+
             <IonRow>
               <IonCol>
                 <IonInput
@@ -65,7 +71,11 @@ const Tab0: React.FC = () => {
                 {errors.personalCode && <p>This field is required</p>}
               </IonCol>
             </IonRow>
-            <IonItemDivider>Email</IonItemDivider>
+
+            <IonItemDivider>
+              <IonLabel color="dark">Email</IonLabel>
+            </IonItemDivider>
+
             <IonRow>
               <IonCol>
                 <IonInput
