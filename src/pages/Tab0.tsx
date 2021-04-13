@@ -1,115 +1,132 @@
+import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import {
+  IonButton,
+  IonCheckbox,
+  IonCol,
   IonContent,
+  IonGrid,
   IonHeader,
+  IonInput,
+  IonItem,
+  IonItemDivider,
   IonPage,
+  IonRow,
   IonTitle,
   IonToolbar,
-  IonLabel,
-  IonItem,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonInput,
-  IonCheckbox,
-  IonButton,
-  IonItemDivider,
 } from "@ionic/react";
 
 import "./Tab0.css";
-import { Controller, useForm } from 'react-hook-form';
 
-
-/*import "@ionic/react/css/core.css";
-
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";*/
+type Inputs = {
+  personalCode: string;
+  email: string;
+  createPassword: string;
+  rewritePassword: string;
+  rememberMe: boolean;
+};
 
 const Tab0: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    alert(JSON.stringify(data));
+  };
+
+  console.log(watch("personalCode"));
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle class="ion-text-center">Home Channel</IonTitle>
+          <IonTitle>Home Channel</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
         <IonGrid>
-       
-        <img alt="building" src="../assets/img/test.jpg"/>
-          <IonRow>
-            <IonCol>
-              <IonItemDivider>
-                <IonLabel className="ion-text-wrap" color="dark">
-                  Register using the personal code received from the property
-                  manager.
-                </IonLabel>
-              </IonItemDivider>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonItem>
-                <IonInput type="text" placeholder="Personal Code"></IonInput>
-              </IonItem>
-            </IonCol>
-          </IonRow>
-
-          <IonItemDivider>
-            <IonLabel color="dark">Email</IonLabel>
-          </IonItemDivider>
-
-          <IonRow>
-            <IonCol>
-              <IonItem>
-                <IonInput type="email" placeholder="abc@gmail.com"></IonInput>
-              </IonItem>
-            </IonCol>
-          </IonRow>
-          <IonItemDivider>
-            <IonLabel color="dark">Create Password</IonLabel>
-          </IonItemDivider>
-          <IonRow>
-            <IonCol>
-              <IonItem>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <IonItemDivider>
+              Register using the personal code received from the property
+              manager.
+            </IonItemDivider>
+            <IonRow>
+              <IonCol>
                 <IonInput
-                  type="password"
-                  placeholder="*************"
-                ></IonInput>
-              </IonItem>
-            </IonCol>
-          </IonRow>
-          <IonItemDivider>
-            <IonLabel color="dark">Rewrite Password</IonLabel>
-          </IonItemDivider>
-          <IonRow>
-            <IonCol>
-              <IonItem>
+                  {...register("personalCode", {
+                    required: true,
+                    maxLength: 10,
+                  })}
+                  placeholder="1234-5678-9101"
+                />
+                {errors.personalCode && <p>This field is required</p>}
+              </IonCol>
+            </IonRow>
+            <IonItemDivider>Email</IonItemDivider>
+            <IonRow>
+              <IonCol>
                 <IonInput
+                  {...register("email", {
+                    required: "Enter your email",
+                    maxLength: 40,
+                    pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  })}
+                  type="email"
+                  placeholder="abc@gmail.com"
+                />
+                {errors.email && (
+                  <p className="error">Enter a valid email address</p>
+                )}
+              </IonCol>
+            </IonRow>
+
+            <IonItemDivider>Create Password</IonItemDivider>
+            <IonRow>
+              <IonCol>
+                <IonInput
+                  {...register("createPassword", {
+                    required: true,
+                    minLength: 8,
+                  })}
                   type="password"
-                  placeholder="*************"
-                ></IonInput>
-              </IonItem>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonItem>
-                <IonCheckbox slot="start" color="secondary"></IonCheckbox>
-                Remember me
-              </IonItem>
-            </IonCol>
-          </IonRow>
-          <IonButton color="secondary" expand="block">
-            Register
-          </IonButton>
+                  placeholder="**********"
+                />
+                {errors.createPassword && (
+                  <p>Field required, 8 characters minimum</p>
+                )}
+              </IonCol>
+            </IonRow>
+
+            <IonItemDivider>Rewrite Password</IonItemDivider>
+            <IonRow>
+              <IonCol>
+                <IonInput
+                  {...register("rewritePassword", {
+                    required: true,
+                    minLength: 8,
+                  })}
+                  type="password"
+                  placeholder="**********"
+                />
+                {errors.rewritePassword && <p>This is a required field</p>}
+              </IonCol>
+            </IonRow>
+
+            <IonRow>
+              <IonCol>
+                <IonItem>
+                  <IonCheckbox slot="start" color="secondary"></IonCheckbox>
+                  Remember me
+                </IonItem>
+              </IonCol>
+            </IonRow>
+            <IonButton type="submit" color="secondary" expand="block">
+              Submit
+            </IonButton>
+          </form>
         </IonGrid>
       </IonContent>
     </IonPage>
