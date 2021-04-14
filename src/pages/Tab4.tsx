@@ -1,41 +1,61 @@
 import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonModal, IonPage, IonTextarea, IonTitle, IonToolbar, IonToggle, IonGrid, IonRow } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import './Tab4.css';
 import { attachOutline, cameraOutline, micOutline } from 'ionicons/icons';
 
 
-
-/* Irina testaa */
 export interface Report {
   id: number;
   text: string;
   content: string;
+  masterkey: boolean;
+  call: boolean
 }
 
+function masterToggle(toggle) {
+  if(toggle === true) {
+    return "Enter with master key";
+  } else {
+    return "Do not enter with master key"
+  }
+}
 
+function callToggle(toggle) {
+  if(toggle === true) {
+    return "Call before entering"
+  } else {
+    return "No need to call"
+  }
+}
 
 const Tab4: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showElement, setShowElement] = useState(true);
   const [text, setText] = useState<string>();
   const [content, setContent] = useState<string>();
+  const [masterkey, setMasterkey] = useState(false)
+  const [call, setCall] = useState(false)
   const [reports, setReports] = useState<Report[]>([]);
   const newReports = [...reports].reverse();
-
 
   const addReport = () => {
     const nextID = Math.random()
     const item: Report = {
       id: nextID,
       text: text,
-      content: content
+      content: content,
+      masterkey: masterkey,
+      call: call
     };
     setReports([...reports, item]);
     setShowModal(false);
     setText('');
     setContent('');
+    setMasterkey(false);
+    setCall(false);
   }
+
+ 
  
 
   return (
@@ -55,46 +75,19 @@ const Tab4: React.FC = () => {
           {newReports.length > 0 && (
             <IonList>
               {newReports.map((list, i) => (
-                <IonItem key={i}>
-                  <IonCard>
+                  <IonCard key={i}>
                     <IonCardTitle>
                       <h2>{list.text}</h2>
                     </IonCardTitle>
                     <IonCardContent>
-                      {list.content}
+                      <p>{list.content}</p>
+                      <p>{masterToggle(list.masterkey)}</p>
+                      <p>{callToggle(list.call)}</p>
                     </IonCardContent>
                   </IonCard>
-                </IonItem>
               ))}
             </IonList>
           )}
-
-{/* testi loppuu */}
-{/*
-
-            <IonCard>   
-              <IonCardHeader>
-                <IonCardTitle>
-                  Leaking waterpipe
-                </IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                Tässä tulee olemaan kortteina tehdyt ilmoitukset.
-              </IonCardContent>
-            </IonCard> 
-          </IonRow>
-          <IonRow>
-            <IonCard>
-              <IonCardHeader>
-                <IonCardTitle>
-                  <IonInput value={text} onIonChange={e => setText(e.detail.value!)}></IonInput>
-                </IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                Jotain sisältöä tässäkin kortissa
-              </IonCardContent>
-            </IonCard>
-*/}
           </IonRow>
           <IonRow>
             <div>
@@ -145,12 +138,11 @@ const Tab4: React.FC = () => {
             </IonRow>
             <IonRow>
               Enter with master key?
-              <IonToggle></IonToggle>
+              <IonToggle checked={masterkey} onIonChange={e => setMasterkey(e.detail.checked)}></IonToggle>
             </IonRow>
-            
             <IonRow>
               Call before entering?
-              <IonToggle></IonToggle>
+              <IonToggle checked={call} onIonChange={e => setCall(e.detail.checked)}></IonToggle>
             </IonRow>
             <IonRow>
               <IonButton onClick={addReport }>
