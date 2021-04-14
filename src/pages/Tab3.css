@@ -1,0 +1,9 @@
+.card {
+    padding: 5px;
+}
+.my-custom-class {
+   --width: 90%;
+}
+.title {
+    text-align: center;
+}
