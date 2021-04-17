@@ -41,9 +41,6 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-        <Route exact path="/tab0">
-            <Tab0 />
-          </Route>
           <Route exact path="/tab1">
             <Tab1 />
           </Route>
@@ -64,29 +61,25 @@ const App: React.FC = () => (
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab0" href="/tab0">
-            <IonIcon icon={key} />
-            <IonLabel>Login</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="tab1" href="/tab1" className='tab-bar-btn'>
             <IonIcon icon={notifications} />
-            <IonLabel>Notifications</IonLabel>
+            <IonLabel className='tab-bar-title'>Notifications</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="reserve" href="/reserve">
+          <IonTabButton tab="reserve" href="/reserve" className='tab-bar-btn'>
             <IonIcon icon={calendarSharp} />
-            <IonLabel>Reserve</IonLabel>
+            <IonLabel className='tab-bar-title'>Reserve</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="tab3" href="/tab3" className='tab-bar-btn'>
             <IonIcon icon={chatbubblesSharp} />
-            <IonLabel>Meeting Room</IonLabel>
+            <IonLabel className='tab-bar-title'>Meeting Room</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab4" href="/tab4">
+          <IonTabButton tab="tab4" href="/tab4" className='tab-bar-btn'>
             <IonIcon icon={hammer} />
-            <IonLabel>Fault Report</IonLabel>
+            <IonLabel className='tab-bar-title'>Fault Report</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab5" href="/tab5">
+          <IonTabButton tab="tab5" href="/tab5" className='tab-bar-btn'>
             <IonIcon icon={business} />
-            <IonLabel>Property Info</IonLabel>
+            <IonLabel className='tab-bar-title'>Property Info</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

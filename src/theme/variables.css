@@ -20,12 +20,22 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-secondary-tint: #50c8ff;
 
   /** tertiary **/
-  --ion-color-tertiary: #5260ff;
-  --ion-color-tertiary-rgb: 82, 96, 255;
+  /** OLD ONE - DISABLED **/
+
+  /* --ion-color-tertiary: #5260ff; */
+  /* --ion-color-tertiary-rgb: 82, 96, 255; */
+  /* --ion-color-tertiary-contrast: #ffffff; */
+  /* --ion-color-tertiary-contrast-rgb: 255, 255, 255; */
+  /* --ion-color-tertiary-shade: #4854e0; */
+  /* --ion-color-tertiary-tint: #6370ff; */
+
+  /** tertiary **/
+  --ion-color-tertiary: #6558F5;
+  --ion-color-tertiary-rgb: 101, 88, 245;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #4854e0;
-  --ion-color-tertiary-tint: #6370ff;
+  --ion-color-tertiary-shade: #564AD9;
+  --ion-color-tertiary-tint: #756AF6;
 
   /** success **/
   --ion-color-success: #2dd36f;
@@ -76,7 +86,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-tint: #f5f6f9;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   /*
    * Dark Colors
    * -------------------------------------------
@@ -233,4 +243,26 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-card-background: #1e1e1e;
   }
+}
+
+
+ion-tab-bar {
+  background-color: #E8E8E8;
+  font-size: 5px;
+  max-width: 100%;
+
+}
+
+ .tab-bar-btn:nth-child(2) {
+  margin-left: -17px;
+  margin-right: -17px;
+}
+
+.tab-bar-btn:nth-child(4) {
+  margin-left: -17px;
+  margin-right: -17px;
+}
+
+.tab-bar-title {
+  font-size: 9px;
 }
