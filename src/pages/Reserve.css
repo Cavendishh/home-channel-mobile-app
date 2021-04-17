@@ -20,6 +20,14 @@ ion-button {
   --ion-color-danger: #6558F5;
 }
 
+ion-title {
+  text-align: center;
+}
+
+ion-header {
+  background-color: white;
+}
+
 .reserve-btn {
   font-size: 10px
 }
