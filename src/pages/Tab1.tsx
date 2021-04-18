@@ -1,8 +1,62 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Tab1.css';
+import React from "react";
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonContent,
+  IonGrid,
+  IonHeader,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
+import Collapsible from "react-collapsible";
+import "./Tab1.css";
+import { chevronDownCircleOutline, chevronUpCircleOutline } from "ionicons/icons";
+
 
 const Tab1: React.FC = () => {
+  const Trigger1 = () => (
+    <IonItem lines="none">
+      <IonIcon icon={chevronDownCircleOutline} id="chevron" slot="end" />
+      <IonCardTitle>
+        <h2>Window Inspection</h2>
+      </IonCardTitle>
+    </IonItem>
+  );
+
+  const Trigger2 = () => (
+    <IonItem lines="none">
+      <IonIcon icon={chevronDownCircleOutline} slot="end" />
+      <IonCardTitle>
+        <h2>Sauna 1 Closed</h2>
+      </IonCardTitle>
+    </IonItem>
+  );
+
+  const Trigger3 = () => (
+    <IonItem lines="none">
+      <IonIcon icon={chevronDownCircleOutline} slot="end" />
+      <IonCardTitle>
+        <h2>Water Cut</h2>
+      </IonCardTitle>
+    </IonItem>
+  );
+
+  const Trigger4 = () => (
+    <IonItem lines="none">
+      <IonIcon icon={chevronDownCircleOutline} slot="end" />
+      <IonCardTitle>
+        <h2>Yard Work Gathering</h2>
+      </IonCardTitle>
+    </IonItem>
+  );
+
   return (
     <IonPage>
       <IonHeader>
@@ -10,13 +64,83 @@ const Tab1: React.FC = () => {
           <IonTitle>Notifications</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Notifications</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Notifications page" />
+      <IonContent className="ion-padding">
+        <IonGrid>
+          <IonCard>
+            <IonCardHeader>
+              <IonCardSubtitle color="danger">Important</IonCardSubtitle>
+              <IonCardSubtitle>week 16 / 2021</IonCardSubtitle>
+            </IonCardHeader>
+            <Collapsible trigger={<Trigger1 />}>
+              <IonCardContent>
+                <p>
+                  Maintenance will enter every apartment in the building during
+                  week 12. This is due to the upcoming window repairs.
+                </p>
+                <br />
+                <p>
+                  All residents will get more information about the schedule
+                  later on. Let the maintenance staff know beforehand....
+                </p>
+              </IonCardContent>
+            </Collapsible>
+          </IonCard>
+
+          <IonCard>
+            <IonCardHeader>
+              <IonCardSubtitle>week 17- week 20 / 2021</IonCardSubtitle>
+            </IonCardHeader>
+            <Collapsible trigger={<Trigger2 />}>
+              <IonCardContent>
+                <p>
+                  Sauna 1 will be going through renovation during the end of April and the month of May. 
+                  The renovation scheduled to start on Monday the 26th of April and finish on Friday the 21st of May.
+                </p>
+                <br />
+                <p>
+                  During the renovations the residents will not be able to make a sauna reservation for Sauna 1, 
+                  as it is out of service. Possible changes of renovation and reservation schedule will be announced
+                  on the notifications board.
+                </p>
+              </IonCardContent>
+            </Collapsible>
+          </IonCard>
+
+          <IonCard>
+            <IonCardHeader>
+              <IonCardSubtitle color="warning">Important</IonCardSubtitle>
+              <IonCardSubtitle>26/4/2021, 15:00-17:00</IonCardSubtitle>
+            </IonCardHeader>
+            <Collapsible trigger={<Trigger3 />}>
+              <IonCardContent>
+                <p>
+                  There will be maintenance on water systems which will affect the flow and heat of water. 
+                  During the time mentioned in this notification, the water might cut out entirely for a moment as well.
+                  Sorry for the inconvenience.
+                </p>
+              </IonCardContent>
+            </Collapsible>
+          </IonCard>
+
+          <IonCard>
+            <IonCardHeader>
+              <IonCardSubtitle>8/5/2021, 12:00-17:00</IonCardSubtitle>
+            </IonCardHeader>
+            <Collapsible trigger={<Trigger4 />}>
+              <IonCardContent>
+                <p>
+                  Residents of the building are welcome to participate to communal yard work on Saturday the 8th of May.
+                  The purpose is to clean the communal yard of the building, do garden work, and prepare the area for the upcoming
+                  summer season.
+                </p>
+                <br/>
+                <p>
+                  The building board is offering snacks and refreshments for all the participants. Welcome!
+                </p>
+              </IonCardContent>
+            </Collapsible>
+          </IonCard>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );

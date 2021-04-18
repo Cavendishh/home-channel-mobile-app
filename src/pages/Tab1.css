@@ -1,0 +1,3 @@
+.Collapsible_trigger-is-open {
+    transform: rotate(180deg);
+}
