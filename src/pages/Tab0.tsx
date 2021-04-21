@@ -53,8 +53,6 @@ const Tab0: React.FC = () => {
           <IonTitle>Home Channel</IonTitle>
         </IonToolbar>
       </IonHeader>
-
-      /**Use of router redirect to get to the front page after submitting form */
       {allowLogin && <Redirect push to="/tab1" />}
       <IonContent className="ion-padding">
         <IonGrid>
