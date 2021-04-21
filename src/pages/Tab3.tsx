@@ -4,6 +4,9 @@ import {
   IonInput,
   IonPage,
   IonIcon,
+  IonGrid,
+  IonRow,
+  IonCol,
   IonCardHeader,
   IonCardTitle,
   IonCardSubtitle,
@@ -18,13 +21,17 @@ import {
   IonItem,
   IonLabel,
   IonItemDivider,
-  IonText
-  
+  IonText,
 } from "@ionic/react";
 
 import React, { useState } from "react";
 import Collapsible from "react-collapsible";
-import { personOutline } from "ionicons/icons";
+import {
+  personOutline,
+  chevronDownCircleOutline,
+  chevronUpCircleOutline,
+} from "ionicons/icons";
+
 import "./Tab3.css";
 
 export interface Item {
@@ -40,46 +47,42 @@ const Tab3: React.FC = () => {
     event: undefined,
   });
 
-
-  const [text, setText] = useState('');
-  const [name, setName] = useState('');
-  const [title, setTitle]= useState('')
+  const [text, setText] = useState("");
+  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [items, setItems] = useState<Item[]>([]);
-  const [state, setState]=useState({
-    })
+  const [state, setState] = useState({});
 
-    const addItem = () => {
-      const nextId = Math.random()
-      const item: Item = {
-        id: nextId,
-        name,
-        title,
-        text
-      };
-      setItems([item,...items]);
-      setName('');
-      setTitle('');
-      setText('');
+  const addItem = () => {
+    const nextId = Math.random();
+    const item: Item = {
+      id: nextId,
+      name,
+      title,
+      text,
     };
+    setItems([item, ...items]);
+    setName("");
+    setTitle("");
+    setText("");
+  };
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-        <IonText color="primary">
-          <h2>
-        <IonTitle class="title"><img alt="building" src="../assets/home.jpg" />HOME CHANNEL</IonTitle>
-        </h2>
-        </IonText>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
+      <IonContent>
+        <IonHeader>
           <IonToolbar>
-            <IonTitle size="large">Meeting Room</IonTitle>
+            <IonText color="primary">
+              <h2>
+                <IonTitle class="title">
+                  <img alt="building" src="../assets/home.jpg" />
+                  HOME CHANNEL
+                </IonTitle>
+              </h2>
+            </IonText>
           </IonToolbar>
         </IonHeader>
-        
+
         <IonPopover
           cssClass="my-custom-class"
           event={popoverState.event}
@@ -88,29 +91,40 @@ const Tab3: React.FC = () => {
             setShowPopover({ showPopover: false, event: undefined })
           }
         >
-          
-          <IonItemDivider>Your message</IonItemDivider>
-          
+          <IonItemDivider>New post</IonItemDivider>
+
           <IonItem>
-            <IonLabel position={"floating"}>Your name</IonLabel>
-            <IonInput value={name} onIonChange={e => setName(e.detail.value!)} ></IonInput>
+            <IonLabel position={"floating"}>Name</IonLabel>
+            <IonInput
+              value={name}
+              onIonChange={(e) => setName(e.detail.value!)}
+            ></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position={"floating"}>Title</IonLabel>
-            <IonInput value={title} onIonChange={e => setTitle(e.detail.value!)}  ></IonInput>
+            <IonInput
+              value={title}
+              onIonChange={(e) => setTitle(e.detail.value!)}
+            ></IonInput>
           </IonItem>
           <IonItem>
-            <IonLabel position={"floating"}>Add your text</IonLabel>
-            <IonTextarea value={text} onIonChange={e => setText(e.detail.value!)} ></IonTextarea>
+            <IonLabel position={"floating"}>Message</IonLabel>
+            <IonTextarea
+              value={text}
+              onIonChange={(e) => setText(e.detail.value!)}
+            ></IonTextarea>
           </IonItem>
-          <IonButton expand="block" 
-          onClick={(e: any) => {
-            addItem();
-            setShowPopover({ showPopover: false, event: e });
-          }}
-           >Send</IonButton> 
-
+          <IonButton
+            expand="block"
+            onClick={(e: any) => {
+              addItem();
+              setShowPopover({ showPopover: false, event: e });
+            }}
+          >
+            Send
+          </IonButton>
         </IonPopover>
+
         <IonButton
           expand="block"
           onClick={(e: any) => {
@@ -122,92 +136,87 @@ const Tab3: React.FC = () => {
         </IonButton>
 
         <IonList>
-            
-              {items.map((item, i) => (
-                
-                   <IonCard class="card" key={i}>
-                     
-                    <IonCardHeader>
-                  <IonCardTitle>
-                    <IonIcon class="icon" icon={personOutline}></IonIcon>{item.name}
+          {items.map((item, i) => (
+            <IonGrid>
+              <IonCard class="card" key={i}>
+                <IonRow>
+                  <IonCardHeader>
+                    <IonCardTitle>
+                      <IonCol>
+                        <IonIcon class="icon" icon={personOutline}></IonIcon>
+                      </IonCol>
+                      <IonCol>{item.name}</IonCol>
                     </IonCardTitle>
-                    <IonCardSubtitle> 
-                    {item.title}
-                  </IonCardSubtitle>
-                  
                   </IonCardHeader>
-          <Collapsible id="a" trigger="Read more...">
-            <IonCardContent>
-              {item.text}
-            </IonCardContent>
-          </Collapsible>
-             
-        </IonCard>
-              ))}
-            </IonList>
+                </IonRow>
+                <IonRow>
+                  <IonCol>
+                    <Collapsible
+                      slot="end"
+                      id="a"
+                      trigger={
+                        <IonRow>
+                          <IonCol size="11">
+                            <IonCardSubtitle className="subtitle">{item.title}</IonCardSubtitle>
+                          </IonCol>
+                          <IonCol>
+                            <IonIcon id="chevron" icon={chevronDownCircleOutline}></IonIcon>
+                          </IonCol>
+                        </IonRow>
+                      }
+                    >
+                      <IonCardContent>{item.text}</IonCardContent>
+                    </Collapsible>
+                  </IonCol>
+                </IonRow>
+              </IonCard>
+            </IonGrid>
+          ))}
+        </IonList>
 
-        <IonCard class="card">
-          <IonCardHeader>
-            <IonCardTitle>
-              <IonIcon class="icon" icon={personOutline}></IonIcon> Mike Simons
-            </IonCardTitle>
-            <IonCardSubtitle>A table for sale</IonCardSubtitle>
-          </IonCardHeader>
-          <Collapsible id="a" trigger="Read more...">
-            <IonCardContent>
-              A table for sale. Almost new table 80x120. 10 eur. Ask more by
-              message 04000040404
-            </IonCardContent>
-          </Collapsible>
-        </IonCard>
-
-        <IonCard class="card">
-          <IonCardHeader>
-            <IonCardTitle>
-              <IonIcon class="icon" icon={personOutline}></IonIcon> Mike Simons
-            </IonCardTitle>
-            <IonCardSubtitle>A table for sale</IonCardSubtitle>
-          </IonCardHeader>
-          <Collapsible id="a" trigger="Read more...">
-            <IonCardContent>
-              A table for sale. Almost new table 80x120. 10 eur. Ask more by
-              message 04000040404
-            </IonCardContent>
-          </Collapsible>
-        </IonCard>
-        <IonCard class="card">
-          <IonCardHeader>
-            <IonCardTitle>
-              <IonIcon class="icon" icon={personOutline}></IonIcon> Mike Simons
-            </IonCardTitle>
-            <IonCardSubtitle>A table for sale</IonCardSubtitle>
-          </IonCardHeader>
-          <Collapsible id="a" trigger="Read more...">
-            <IonCardContent>
-              A table for sale. Almost new table 80x120. 10 eur. Ask more by
-              message 04000040404
-            </IonCardContent>
-          </Collapsible>
-        </IonCard>
-        <IonCard class="card">
-          <IonCardHeader>
-            <IonCardTitle>
-              <IonIcon class="icon" icon={personOutline}></IonIcon> Mike Simons
-            </IonCardTitle>
-            <IonCardSubtitle>A table for sale</IonCardSubtitle>
-          </IonCardHeader>
-          <Collapsible id="a" trigger="Read more...">
-            <IonCardContent>
-              A table for sale. Almost new table 80x120. 10 eur. Ask more by
-              message 04000040404
-            </IonCardContent>
-          </Collapsible>
-        </IonCard>
-        
-        
+        <IonGrid>
+          <IonCard class="card">
+            <IonRow>
+              <IonCardHeader>
+                <IonCardTitle>
+                  <IonCol>
+                    <IonIcon class="icon" icon={personOutline}></IonIcon>
+                  </IonCol>
+                  <IonCol>Mike Simons</IonCol>
+                </IonCardTitle>
+              </IonCardHeader>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <Collapsible
+                  trigger={
+                    <IonRow>
+                      <IonCol size="11">
+                        <IonCardSubtitle className="subtitle">
+                          A table for sale{" "}
+                        </IonCardSubtitle>
+                      </IonCol>
+                      <IonCol>
+                        <IonIcon
+                          id="chevron"
+                          icon={chevronDownCircleOutline}
+                        ></IonIcon>
+                      </IonCol>
+                    </IonRow>
+                  }
+                >
+                  <IonCardContent>
+                    A table for sale. Almost new table 80x120. 10 eur. Ask more
+                    by message 04000040404
+                  </IonCardContent>
+                </Collapsible>
+              </IonCol>
+            </IonRow>
+          </IonCard>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Tab3
+export default Tab3;
