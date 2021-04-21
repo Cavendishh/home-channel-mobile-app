@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -20,9 +21,9 @@ import {
 } from "@ionic/react";
 import { warningOutline } from "ionicons/icons";
 import "./Tab0.css";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 
-
+//To validate the input fields of the login form I used react-hook-form. Here I define the type of values
 type FormValues = {
   personalCode: string;
   email: string;
@@ -32,16 +33,17 @@ type FormValues = {
 };
 
 const Tab0: React.FC = () => {
+  //These hooks are to make the login after registering and validating the inputs. Without backend, one has to go around the usual way
   const [allowLogin, setAllowLogin] = useState(false);
-
+  //react hook form components for the form validation
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-
+  //The eventhandler for submitting the form and moving to the next page
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    setAllowLogin(true)
+    setAllowLogin(true);
   };
 
   return (
@@ -51,7 +53,9 @@ const Tab0: React.FC = () => {
           <IonTitle>Home Channel</IonTitle>
         </IonToolbar>
       </IonHeader>
-      {allowLogin && <Redirect push to="/tab1"/>}
+
+      /**Use of router redirect to get to the front page after submitting form */
+      {allowLogin && <Redirect push to="/tab1" />}
       <IonContent className="ion-padding">
         <IonGrid>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -60,7 +64,7 @@ const Tab0: React.FC = () => {
             <IonItemDivider>
               <IonLabel className="ion-text-wrap" color="dark">
                 Register using the personal code received from the property
-                manager.
+                manager*
               </IonLabel>
             </IonItemDivider>
 
@@ -85,7 +89,7 @@ const Tab0: React.FC = () => {
             </IonRow>
 
             <IonItemDivider>
-              <IonLabel color="dark">Email</IonLabel>
+              <IonLabel color="dark">Email*</IonLabel>
             </IonItemDivider>
 
             <IonRow>
@@ -112,7 +116,7 @@ const Tab0: React.FC = () => {
               </IonCol>
             </IonRow>
 
-            <IonItemDivider>Create Password</IonItemDivider>
+            <IonItemDivider>Create Password*</IonItemDivider>
             <IonRow>
               <IonCol>
                 <IonItem lines="full">
@@ -136,7 +140,7 @@ const Tab0: React.FC = () => {
               </IonCol>
             </IonRow>
 
-            <IonItemDivider>Rewrite Password</IonItemDivider>
+            <IonItemDivider>Rewrite Password*</IonItemDivider>
             <IonRow>
               <IonCol>
                 <IonItem lines="full">
@@ -160,7 +164,7 @@ const Tab0: React.FC = () => {
 
             <IonRow>
               <IonCol>
-                <IonItem>
+                <IonItem lines="full">
                   <IonCheckbox slot="start" color="secondary"></IonCheckbox>
                   Remember me
                 </IonItem>

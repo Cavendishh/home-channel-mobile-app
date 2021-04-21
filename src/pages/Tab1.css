@@ -1,3 +1,7 @@
 .Collapsible {
     background: gainsboro;
 }
+
+.Collapsible__trigger-is-open {
+    transform: rotateZ(180deg);
+}

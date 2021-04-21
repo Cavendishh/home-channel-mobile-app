@@ -80,7 +80,9 @@ const Tab1: React.FC = () => {
                 <br />
                 <p>
                   All residents will get more information about the schedule
-                  later on. Let the maintenance staff know beforehand....
+                  later on. Let the maintenance staff know beforehand if there are 
+                  pets in the apartment or if you wish to be present during the 
+                  inspection.
                 </p>
               </IonCardContent>
             </Collapsible>
