@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+
 import {
   IonButton,
   IonCheckbox,
@@ -19,7 +20,8 @@ import {
 } from "@ionic/react";
 import { warningOutline } from "ionicons/icons";
 import "./Tab0.css";
-import { on } from "node:events";
+import { Redirect } from 'react-router-dom';
+
 
 type FormValues = {
   personalCode: string;
@@ -30,13 +32,17 @@ type FormValues = {
 };
 
 const Tab0: React.FC = () => {
+  const [allowLogin, setAllowLogin] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    setAllowLogin(true)
+  };
 
   return (
     <IonPage>
@@ -45,7 +51,7 @@ const Tab0: React.FC = () => {
           <IonTitle>Home Channel</IonTitle>
         </IonToolbar>
       </IonHeader>
-
+      {allowLogin && <Redirect push to="/tab1"/>}
       <IonContent className="ion-padding">
         <IonGrid>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -60,12 +66,13 @@ const Tab0: React.FC = () => {
 
             <IonRow>
               <IonCol>
-                <IonItem>
+                <IonItem lines="full">
                   <IonInput
                     {...register("personalCode", {
                       required: true,
-                      maxLength: 10,
+                      maxLength: 20,
                     })}
+                    id="pcode"
                     placeholder="1234-5678-9101"
                   />
                 </IonItem>
@@ -83,13 +90,14 @@ const Tab0: React.FC = () => {
 
             <IonRow>
               <IonCol>
-                <IonItem>
+                <IonItem lines="full">
                   <IonInput
                     {...register("email", {
                       required: "Enter your email",
                       maxLength: 40,
                       pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                     })}
+                    id="mail"
                     type="email"
                     placeholder="abc@gmail.com"
                     autocomplete="email"
@@ -107,35 +115,37 @@ const Tab0: React.FC = () => {
             <IonItemDivider>Create Password</IonItemDivider>
             <IonRow>
               <IonCol>
-                <IonItem>
+                <IonItem lines="full">
                   <IonInput
                     {...register("createPassword", {
                       required: true,
                       minLength: 8,
                     })}
+                    id="pword"
                     type="password"
                     placeholder="**********"
                   />
-
-                  {errors.createPassword && (
-                    <p id="password">
-                      <IonIcon icon={warningOutline} /> Field required, 8
-                      characters minimum
-                    </p>
-                  )}
                 </IonItem>
+
+                {errors.createPassword && (
+                  <p id="password">
+                    <IonIcon icon={warningOutline} /> Field required, 8
+                    characters minimum
+                  </p>
+                )}
               </IonCol>
             </IonRow>
 
             <IonItemDivider>Rewrite Password</IonItemDivider>
             <IonRow>
               <IonCol>
-                <IonItem>
+                <IonItem lines="full">
                   <IonInput
                     {...register("rewritePassword", {
                       required: true,
                       minLength: 8,
                     })}
+                    id="pwordtwo"
                     type="password"
                     placeholder="**********"
                   />
