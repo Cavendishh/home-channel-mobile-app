@@ -1,0 +1,11 @@
+
+#code, #email, #password, #rpassword {
+    color: red;
+    font-size: 80%;
+}
+
+ion-item{
+    --border-color: gainsboro;
+ }
+
+

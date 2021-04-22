@@ -10,8 +10,9 @@ import {
 } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
 import { business, calendarSharp, chatbubblesSharp, hammer, notifications } from 'ionicons/icons'
+import Tab0 from "./pages/Tab0";
 import Tab1 from './pages/Tab1'
-import Reserve from './pages/Reserve'
+import Tab2 from './pages/Tab2'
 import Tab3 from './pages/Tab3'
 import Tab4 from './pages/Tab4'
 import Tab5 from './pages/Tab5'
@@ -40,11 +41,14 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+          <Route exact path="/tab0">
+            <Tab0 />
+          </Route>
           <Route exact path="/tab1">
             <Tab1 />
           </Route>
-          <Route exact path="/reserve">
-            <Reserve />
+          <Route exact path="/tab2">
+            <Tab2 />
           </Route>
           <Route exact path="/tab3">
             <Tab3 />
@@ -64,7 +68,7 @@ const App: React.FC = () => (
             <IonIcon icon={notifications} />
             <IonLabel className='tab-bar-title'>Notifications</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="reserve" href="/reserve" className='tab-bar-btn'>
+          <IonTabButton tab="tab2" href="/tab2" className='tab-bar-btn'>
             <IonIcon icon={calendarSharp} />
             <IonLabel className='tab-bar-title'>Reserve</IonLabel>
           </IonTabButton>

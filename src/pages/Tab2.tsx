@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './Reserve.css'
+import './Tab2.css'
 import { IonContent,
   IonHeader,
   IonPage,
