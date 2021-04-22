@@ -21,3 +21,8 @@
 .subtitle {
     font-size: 22px;
 }
+
+.error {
+    text-align: center;
+    color: red;
+}

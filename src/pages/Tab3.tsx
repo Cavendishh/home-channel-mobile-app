@@ -52,6 +52,8 @@ const Tab3: React.FC = () => {
   const [title, setTitle] = useState("");
   const [items, setItems] = useState<Item[]>([]);
   const [state, setState] = useState({});
+  const [showError, setShowError] = useState(false);
+
 
   const addItem = () => {
     const nextId = Math.random();
@@ -121,12 +123,18 @@ const Tab3: React.FC = () => {
               onIonChange={(e) => setText(e.detail.value!)}
             ></IonTextarea>
           </IonItem>
+          {showError && <div className="error" >All fields are required</div>}
           <IonButton
             expand="block"
             onClick={(e: any) => {
+              if (name===""|| title===""||text===""){
+                setShowError(true);
+                
+              }
+              else{
               addItem();
               setShowPopover({ showPopover: false, event: e });
-            }}
+            }}}
           >
             Send
           </IonButton>
@@ -171,6 +179,17 @@ const Tab3: React.FC = () => {
                           </IonCol>
                         </IonRow>
                       }
+                      triggerWhenOpen={
+                        <IonRow>
+                          <IonCol>
+                            <IonCardSubtitle className="subtitle">{item.title}</IonCardSubtitle>
+                          </IonCol>
+                          <IonCol size="1">
+                            <IonIcon id="chevron" icon={chevronUpCircleOutline}></IonIcon>
+                          </IonCol>
+                        </IonRow>
+
+                      }
                     >
                       <IonCardContent>{item.text}</IonCardContent>
                     </Collapsible>
@@ -207,6 +226,21 @@ const Tab3: React.FC = () => {
                         <IonIcon 
                           id="chevron"
                           icon={chevronDownCircleOutline}
+                        ></IonIcon>
+                      </IonCol>
+                    </IonRow>
+                  }
+                  triggerWhenOpen={
+                    <IonRow>
+                      <IonCol >
+                        <IonCardSubtitle className="subtitle">
+                          A table for sale{" "}
+                        </IonCardSubtitle>
+                      </IonCol>
+                      <IonCol size="1">
+                        <IonIcon 
+                          id="chevron"
+                          icon={chevronUpCircleOutline}
                         ></IonIcon>
                       </IonCol>
                     </IonRow>
