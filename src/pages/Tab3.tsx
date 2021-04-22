@@ -146,6 +146,7 @@ const Tab3: React.FC = () => {
             e.persist();
             setShowPopover({ showPopover: true, event: e });
           }}
+          color="secondary"
         >
           Add new
         </IonButton>

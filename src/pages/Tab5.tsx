@@ -39,7 +39,7 @@ const Tab5: React.FC = () => {
             <p>Property maintenance service</p>
             <p>ABC Ltd (9.00 - 16.00)</p>
             <p>+358 98764532</p>
-           <p><a href="Google.com">www.service-abc fi</a></p> 
+           <p>www.service-abc fi</p> 
            <p> Door opening:</p>
            <p>+358 987654321</p>
           </IonCardContent>
@@ -53,7 +53,7 @@ const Tab5: React.FC = () => {
           </IonCardContent>
         </IonCard>
        
-        <Link to='/tab0' className="logout"><IonButton color="primary" expand="block">Logout</IonButton></Link>
+            <Link to='/tab0' className="logout"><IonButton color="secondary" expand="block">Logout</IonButton></Link>
           </IonGrid>       
       </IonContent>
       
