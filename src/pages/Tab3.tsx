@@ -80,9 +80,16 @@ const Tab3: React.FC = () => {
                 </IonTitle>
               </h2>
             </IonText>
+            
           </IonToolbar>
         </IonHeader>
-
+         
+         <IonItem>
+          
+          <IonTitle className="title">MEETING ROOM</IonTitle>
+          
+        </IonItem>
+        
         <IonPopover
           cssClass="my-custom-class"
           event={popoverState.event}
@@ -124,7 +131,7 @@ const Tab3: React.FC = () => {
             Send
           </IonButton>
         </IonPopover>
-
+            <IonGrid>
         <IonButton
           expand="block"
           onClick={(e: any) => {
@@ -134,7 +141,7 @@ const Tab3: React.FC = () => {
         >
           Add new
         </IonButton>
-
+        </IonGrid>
         <IonList>
           {items.map((item, i) => (
             <IonGrid>
@@ -156,10 +163,10 @@ const Tab3: React.FC = () => {
                       id="a"
                       trigger={
                         <IonRow>
-                          <IonCol size="11">
+                          <IonCol>
                             <IonCardSubtitle className="subtitle">{item.title}</IonCardSubtitle>
                           </IonCol>
-                          <IonCol>
+                          <IonCol size="1">
                             <IonIcon id="chevron" icon={chevronDownCircleOutline}></IonIcon>
                           </IonCol>
                         </IonRow>
@@ -191,12 +198,88 @@ const Tab3: React.FC = () => {
                 <Collapsible
                   trigger={
                     <IonRow>
-                      <IonCol size="11">
+                      <IonCol >
                         <IonCardSubtitle className="subtitle">
                           A table for sale{" "}
                         </IonCardSubtitle>
                       </IonCol>
-                      <IonCol>
+                      <IonCol size="1">
+                        <IonIcon 
+                          id="chevron"
+                          icon={chevronDownCircleOutline}
+                        ></IonIcon>
+                      </IonCol>
+                    </IonRow>
+                  }
+                >
+                  <IonCardContent>
+                    A table for sale. Almost new table 80x120. 10 eur. Ask more
+                    by message 04000040404
+                  </IonCardContent>
+                </Collapsible>
+              </IonCol>
+            </IonRow>
+          </IonCard>
+          <IonCard class="card">
+            <IonRow>
+              <IonCardHeader>
+                <IonCardTitle>
+                  <IonCol>
+                    <IonIcon class="icon" icon={personOutline}></IonIcon>
+                  </IonCol>
+                  <IonCol>Anna Kivinen</IonCol>
+                </IonCardTitle>
+              </IonCardHeader>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <Collapsible
+                  trigger={
+                    <IonRow>
+                      <IonCol >
+                        <IonCardSubtitle className="subtitle">
+                          Having party this saturday
+                        </IonCardSubtitle>
+                      </IonCol>
+                      <IonCol size="1">
+                        <IonIcon
+                          id="chevron"
+                          icon={chevronDownCircleOutline}
+                        ></IonIcon>
+                      </IonCol>
+                    </IonRow>
+                  }
+                >
+                  <IonCardContent>
+                    A table for sale. Almost new table 80x120. 10 eur. Ask more
+                    by message 04000040404
+                  </IonCardContent>
+                </Collapsible>
+              </IonCol>
+            </IonRow>
+          </IonCard>
+          <IonCard class="card">
+            <IonRow>
+              <IonCardHeader>
+                <IonCardTitle>
+                  <IonCol>
+                    <IonIcon class="icon" icon={personOutline}></IonIcon>
+                  </IonCol>
+                  <IonCol>Monica Daves</IonCol>
+                </IonCardTitle>
+              </IonCardHeader>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <Collapsible
+                  trigger={
+                    <IonRow>
+                      <IonCol size="11">
+                        <IonCardSubtitle className="subtitle">
+                          Dog sitter{" "}
+                        </IonCardSubtitle>
+                      </IonCol>
+                      <IonCol size="1">
                         <IonIcon
                           id="chevron"
                           icon={chevronDownCircleOutline}

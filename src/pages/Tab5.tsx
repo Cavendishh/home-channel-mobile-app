@@ -1,24 +1,33 @@
-import { IonCardContent, IonCard, IonIcon, IonCardTitle, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonCardContent, IonCard, IonText, IonGrid, IonIcon, IonItem, IonLabel, IonCardTitle, IonContent, IonHeader, IonButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { callOutline } from 'ionicons/icons';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab5.css';
+import 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Tab5: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
+     <IonHeader>
         <IonToolbar>
-          <IonTitle>Property Info</IonTitle>
+        <IonText color="primary">
+              <h2>
+                <IonTitle class="title">
+                  <img alt="building" src="../assets/home.jpg" />
+                  HOME CHANNEL
+                </IonTitle>
+              </h2>
+            </IonText>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+      <IonGrid>
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Property Info</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonCard>
-          
           <IonCardTitle><p>Property Info</p></IonCardTitle>
           <IonCardContent >
            <p> Fleminginkatu 21</p>
@@ -38,12 +47,16 @@ const Tab5: React.FC = () => {
         <IonCard>
           <IonCardTitle><p>Emergency contact details</p></IonCardTitle>
           <IonCardContent >
-           <p><h2>24/7</h2> </p>
-            
+          <IonText color="primary"><h2>24/7</h2>
             <p><IonIcon class="icon" icon={callOutline}></IonIcon> +358 987654321</p>
+            </IonText>
           </IonCardContent>
         </IonCard>
+       
+          <IonButton color="primary" expand="block"><Link to='/tab0' className="logout"> Logout</Link></IonButton>
+          </IonGrid>       
       </IonContent>
+      
     </IonPage>
   );
 };

@@ -13,9 +13,7 @@
   color: white;
 }
 
-.Collapsible_trigger-is-open {
-    transform: rotate(180deg);
-}
+
 #chevron {
     font-size: 24px;
 }
