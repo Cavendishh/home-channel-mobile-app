@@ -53,7 +53,7 @@ const Tab5: React.FC = () => {
           </IonCardContent>
         </IonCard>
        
-          <IonButton color="primary" expand="block"><Link to='/tab0' className="logout"> Logout</Link></IonButton>
+        <Link to='/tab0' className="logout"><IonButton color="primary" expand="block">Logout</IonButton></Link>
           </IonGrid>       
       </IonContent>
       
