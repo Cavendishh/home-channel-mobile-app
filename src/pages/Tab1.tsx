@@ -114,11 +114,6 @@ const Tab1: React.FC = () => {
       </IonHeader>
       <IonContent className="ion-padding">
         <IonGrid>
-          <IonRow>
-            <IonCol>
-              <h5 id="subHeader" text-align="center">Notifications</h5>
-            </IonCol>
-          </IonRow>
           <IonCard>
             <IonCardHeader>
               <IonCardSubtitle color="danger">Important</IonCardSubtitle>
