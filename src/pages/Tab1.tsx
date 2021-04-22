@@ -5,6 +5,7 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonCol,
   IonContent,
   IonGrid,
   IonHeader,
@@ -12,6 +13,8 @@ import {
   IonItem,
   IonLabel,
   IonPage,
+  IonRow,
+  IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -77,7 +80,6 @@ const Tab1: React.FC = () => {
     </IonItem>
   );
 
-
   const Trigger4 = () => (
     <IonItem lines="none">
       <IonIcon icon={chevronDownCircleOutline} slot="end" />
@@ -100,11 +102,23 @@ const Tab1: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Notifications</IonTitle>
+          <IonText color="secondary">
+            <h2>
+              <IonTitle class="title">
+                <img alt="building" src="../assets/home.jpg" />
+                HOME CHANNEL
+              </IonTitle>
+            </h2>
+          </IonText>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
         <IonGrid>
+          <IonRow>
+            <IonCol>
+              <h5 id="subHeader" text-align="center">Notifications</h5>
+            </IonCol>
+          </IonRow>
           <IonCard>
             <IonCardHeader>
               <IonCardSubtitle color="danger">Important</IonCardSubtitle>

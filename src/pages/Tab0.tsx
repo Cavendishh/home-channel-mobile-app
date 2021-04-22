@@ -16,6 +16,7 @@ import {
   IonLabel,
   IonPage,
   IonRow,
+  IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -50,9 +51,17 @@ const Tab0: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Home Channel</IonTitle>
+          <IonText color="secondary">
+            <h2>
+              <IonTitle class="title">
+                <img alt="building" src="../assets/home.jpg" />
+                HOME CHANNEL
+              </IonTitle>
+            </h2>
+          </IonText>
         </IonToolbar>
       </IonHeader>
+      {/* Here redirect is used to allow login and change tab on submit */}
       {allowLogin && <Redirect push to="/tab1" />}
       <IonContent className="ion-padding">
         <IonGrid>
