@@ -9,8 +9,7 @@ import {
   IonTabs,
 } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
-import { business, calendarSharp, chatbubblesSharp, hammer, key, notifications } from 'ionicons/icons'
-import Tab0 from './pages/Tab0'
+import { business, calendarSharp, chatbubblesSharp, hammer, notifications } from 'ionicons/icons'
 import Tab1 from './pages/Tab1'
 import Reserve from './pages/Reserve'
 import Tab3 from './pages/Tab3'
