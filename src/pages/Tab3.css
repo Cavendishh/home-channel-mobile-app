@@ -1,0 +1,28 @@
+.card {
+    padding: 5px;
+}
+.my-custom-class {
+   --width: 90%;
+}
+.title {
+    text-align: center;
+}
+
+.collapsible {
+    background-color: #777;
+  color: white;
+}
+
+
+#chevron {
+    font-size: 24px;
+}
+
+.subtitle {
+    font-size: 22px;
+}
+
+.error {
+    text-align: center;
+    color: red;
+}
