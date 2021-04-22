@@ -21,15 +21,15 @@ import {
   IonRow,
   IonImg,
   IonCol,
-  IonFooter
+  IonFooter,
 } from '@ionic/react';
 
 import React, { useState } from 'react';
 import './Tab4.css';
-import { cameraOutline, image, micOutline, chevronDownCircleOutline, chevronUpCircleOutline} from 'ionicons/icons';
+import { cameraOutline, image, micOutline, chevronDownCircleOutline, chevronUpCircleOutline, closeOutline} from 'ionicons/icons';
 import Collapsible from 'react-collapsible';
-import { Plugins, CameraResultType, Camera } from "@capacitor/core";
-
+import { CameraResultType, Camera } from "@capacitor/core";
+import { MediaCapture } from "@ionic-native/media-capture";
 
 
 export interface Report {
@@ -70,109 +70,157 @@ async function takePicture()  {
   }
 }
 
+function captureAudio() {
+ this.MediaCapture.captureAudio()
+ 
+  ;
+}
 
 
 const Tab4: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showElement, setShowElement] = useState(true);
+  const [showNotice, setShowNotice] = useState(false)
   const [text, setText] = useState<string>();
   const [content, setContent] = useState<string>();
   const [masterkey, setMasterkey] = useState(false)
   const [call, setCall] = useState(false)
   const [reports, setReports] = useState<Report[]>([]);
   const newReports = [...reports].reverse();
-  const newReportsTwo=[...newReports].filter(e => e.text !== "" && e.content !== "");
-  const { Camera } = Plugins;
+  const newReportsTwo=[...newReports].filter(e => e.text !== "");
 
   
-  const Trigger = () => (
-    <IonItem>
-      <IonIcon icon={chevronDownCircleOutline} slot="end"/>
-    </IonItem>
-  );
+const Mic = () => (
+  <IonButton onClick={showRecord} color="secondary">
+    <IonIcon slot="icon-only" icon={micOutline} size="large"></IonIcon>
+  </IonButton>
+)
+function showRecord() {
+  setShowNotice(true);
+  setShowElement(false);
+}
 
-  const Trigger2 = () => (
-    <IonItem>
-      <IonIcon icon={chevronUpCircleOutline} slot="end"/>
-    </IonItem>
-  )
-  ;
+function showWrite() {
+  setShowNotice(false);
+  setShowElement(true);
+}
+
+const Notice =() =>(
+  <IonItem lines="none" >
+    <p id="notice">This feature is not available</p>
+    <IonIcon icon={closeOutline} slot="end" onClick={() => setShowNotice(false)}></IonIcon>
+  </IonItem>
+)
+
+const Trigger = () => (
+  <IonItem>
+    <IonIcon icon={chevronDownCircleOutline} slot="end"/>
+  </IonItem>
+);
+
+const Trigger2 = () => (
+  <IonItem>
+    <IonIcon icon={chevronUpCircleOutline} slot="end"/>
+  </IonItem>
+);
 
 
-  const addReport = () => {
-    const nextID = Math.random()
-    const item: Report = {
-      id: nextID,
-      text: text,
-      content: content,
-      masterkey: masterkey,
-      call: call,
-      image: image
-    };
-    setReports([...reports, item]);
-    setShowModal(false);
-    setText('');
-    setContent('');
-    setMasterkey(false);
-    setCall(false);
-  }
+const addReport = () => {
+  const nextID = Math.random()
+  const item: Report = {
+    id: nextID,
+    text: text,
+    content: content,
+    masterkey: masterkey,
+    call: call,
+    image: image
+  };
+  setReports([...reports, item]);
+  setShowModal(false);
+  setText('');
+  setContent('');
+  setMasterkey(false);
+  setCall(false);
+}
 
-  return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Fault Report</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent className="ion-padding">
+const openRecorder = async () => {
+  const recording = await MediaCapture.captureAudio()
+  console.log("moi");
+}
 
-        <IonGrid>
-          <IonRow className="ion-justify-content-center">
-            <IonCol>
-             <IonButton color="secondary" expand="block" onClick={() => setShowModal(true)}>Add new</IonButton>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              {newReportsTwo.length > 0 && (
-              <IonList lines="none">
-                {newReportsTwo.map((list, i) => (
-                    <IonCard className="card" key={i}>
-                      <IonCardHeader>
+return (
+  <IonPage>
+    <IonHeader>
+      <IonToolbar>
+        <IonTitle className="title" color="tertiary">
+        <img alt="building" src="../assets/home.jpg" />
+          HOME CHANNEL
+        </IonTitle>
+      </IonToolbar>
+    </IonHeader>
+    <IonContent className="ion-padding">
+
+      <IonGrid>
+        <IonRow>
+          <IonCol>
+              <h5 id="subHeader">FAULT REPORTS</h5>
+          </IonCol>
+        </IonRow>
+        <IonRow className="ion-justify-content-center">
+          <IonCol>
+            <IonButton color="secondary" expand="block" onClick={() => setShowModal(true)}>Add new</IonButton>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            {newReportsTwo.length > 0 && (
+            <IonList lines="none">
+              {newReportsTwo.map((list, i) => (
+                  <IonCard key={i}>
+                    <IonCardHeader id="cardHeader">
+                      <IonCardTitle color="rgb(131, 131, 131)">
                         <h2>{list.text}</h2>
-                      </IonCardHeader>
-                      <Collapsible trigger={<Trigger />}>
+                      </IonCardTitle>
+                    </IonCardHeader>
+                    <Collapsible id="chevron" trigger={<Trigger />} triggerWhenOpen={<Trigger2/>}>
 
-                      <IonCardContent>
-                        <p id="report">{list.content}</p>
-                        <br/>
-                        <p id="reportToggle">{masterToggle(list.masterkey)}</p>
-                        <p id="reportToggle">{callToggle(list.call)}</p>
-                        {/*<IonImg src={list.image} />*/}
-                        <IonImg src= "https://images.unsplash.com/photo-1600247250062-7bc3adb28177?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1270&q=80"/>
-                        <p>An example image</p>
-                      </IonCardContent>
-                      </Collapsible>
-                    </IonCard>
-                  ))}
-                </IonList>
-              )}
-            </IonCol>
-          
-          </IonRow>
-        </IonGrid>
-
-               
+                    <IonCardContent id="cardContent">
+                      <p id="report">{list.content}</p>
+                      <br/>
+                      <p id="reportToggle">{masterToggle(list.masterkey)}</p>
+                      <p id="reportToggle">{callToggle(list.call)}</p>
+                      {/*<IonImg src={list.image} />*/}
+                      <IonImg src= "https://images.unsplash.com/photo-1600247250062-7bc3adb28177?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1270&q=80"/>
+                      <p id="notice">Camera feature not available.<br/>
+                      Example image. &copy; Hans Eiskonen</p>
+                    </IonCardContent>
+                    </Collapsible>
+                  </IonCard>
+                ))}
+              </IonList>
+            )}
+          </IonCol>
+        
+        </IonRow>
+      </IonGrid>          
 
 {/*--   Modal --*/}
 
 <IonModal isOpen={showModal}>
         <IonHeader>
             <IonToolbar>
-              <IonTitle>New fault report</IonTitle>
+              <IonTitle className="title" color="tertiary">
+                <img alt="building" src="../assets/home.jpg" />
+                HOME CHANNEL
+              </IonTitle>
             </IonToolbar>
           </IonHeader>
           <IonGrid>
+            <IonRow>
+              <IonCol>
+                  <h5 id="subHeader">NEW FAULT REPORT</h5>
+              </IonCol>
+            </IonRow>
             <IonRow>
                 <IonLabel position="stacked">
                   Title
@@ -182,7 +230,7 @@ const Tab4: React.FC = () => {
             </IonRow>
             <IonRow>
               <IonCol>
-                <IonButton className="writeRecord" color={showElement ? "tertiary" : "secondary"} onClick={() => setShowElement(true)}>Write</IonButton>
+                <IonButton className="writeRecord" color={showElement ? "tertiary" : "secondary"} onClick={showWrite}>Write</IonButton>
               </IonCol>
               <IonCol>
                 <IonButton className="writeRecord" color={showElement ? "secondary" : "tertiary"} onClick={() => setShowElement(false)}>Record</IonButton>
@@ -190,9 +238,9 @@ const Tab4: React.FC = () => {
             </IonRow>
             <IonRow className="inputchoices">
               <IonCol>
-                {showElement && <IonTextarea id="item" value={content} placeholder="Leave your message here" onIonChange={e => setContent(e.detail.value!)}></IonTextarea>}
-
-                {!showElement && <IonIcon icon={micOutline} size="large"></IonIcon>}
+                {showElement && <IonTextarea id="write" value={content} placeholder="Leave your message here" onIonChange={e => setContent(e.detail.value!)} />}
+                {!showElement && <Mic />}
+                {showNotice && <Notice />}
               </IonCol>
   
             </IonRow>

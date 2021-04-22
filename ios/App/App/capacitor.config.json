@@ -1,1 +1,13 @@
-{}
+{
+  "appId": "com.teamwork.homeChannel",
+  "appName": "home-channel-mobile-app",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
