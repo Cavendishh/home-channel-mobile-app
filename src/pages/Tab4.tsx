@@ -75,13 +75,13 @@ const Tab4: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showElement, setShowElement] = useState(true);
   const [showNotice, setShowNotice] = useState(false)
-  const [text, setText] = useState<string>();
-  const [content, setContent] = useState<string>();
+  const [text, setText] = useState("");
+  const [content, setContent] = useState("");
   const [masterkey, setMasterkey] = useState(false)
   const [call, setCall] = useState(false)
   const [reports, setReports] = useState<Report[]>([]);
   const newReports = [...reports].reverse();
-  const newReportsTwo=[...newReports].filter(e => e.text !== "");
+  const [showError, setShowError] = useState(false);
 
   
 const Mic = () => (
@@ -107,16 +107,21 @@ const Notice =() =>(
 )
 
 const Trigger = () => (
-  <IonItem>
-    <IonIcon icon={chevronDownCircleOutline} slot="end"/>
-  </IonItem>
+    <IonIcon icon={chevronDownCircleOutline} slot="end" size="large"/>
 );
 
 const Trigger2 = () => (
-  <IonItem>
-    <IonIcon icon={chevronUpCircleOutline} slot="end"/>
-  </IonItem>
+    <IonIcon icon={chevronUpCircleOutline} slot="end" size="large"/>
 );
+
+const closeModall =() => {
+  setShowModal(false);
+  setText('');
+  setContent('');
+  setMasterkey(false);
+  setCall(false);
+  setShowError(false);
+}
 
 
 const addReport = () => {
@@ -135,10 +140,11 @@ const addReport = () => {
   setContent('');
   setMasterkey(false);
   setCall(false);
+  setShowError(false);
 }
 
 return (
-  <IonPage>
+  <IonPage className="page">
     <IonHeader>
       <IonToolbar>
         <IonTitle className="title" color="tertiary">
@@ -147,42 +153,37 @@ return (
         </IonTitle>
       </IonToolbar>
     </IonHeader>
-    <IonContent className="ion-padding">
+    <IonContent>
 
       <IonGrid>
-        <IonRow>
-          <IonCol>
-              <h5 id="subHeader">FAULT REPORTS</h5>
-          </IonCol>
-        </IonRow>
         <IonRow className="ion-justify-content-center">
           <IonCol>
-            <IonButton color="secondary" expand="block" onClick={() => setShowModal(true)}>Add new</IonButton>
+            <IonButton color="secondary" expand="block" onClick={() => setShowModal(true)}>REPORT A FAULT</IonButton>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-            {newReportsTwo.length > 0 && (
+            {newReports.length > 0 && (
             <IonList lines="none">
-              {newReportsTwo.map((list, i) => (
+              {newReports.map((list, i) => (
                   <IonCard key={i}>
                     <IonCardHeader id="cardHeader">
-                      <IonCardTitle color="rgb(131, 131, 131)">
+                      <IonCardTitle color="rgb(131, 131, 131)" id="cardHeader">
                         <h2>{list.text}</h2>
                       </IonCardTitle>
                     </IonCardHeader>
-                    <Collapsible id="chevron" trigger={<Trigger />} triggerWhenOpen={<Trigger2/>}>
-
-                    <IonCardContent id="cardContent">
-                      <p id="report">{list.content}</p>
-                      <br/>
-                      <p id="reportToggle">{masterToggle(list.masterkey)}</p>
-                      <p id="reportToggle">{callToggle(list.call)}</p>
-                      {/*<IonImg src={list.image} />*/}
-                      <IonImg src= "https://images.unsplash.com/photo-1600247250062-7bc3adb28177?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1270&q=80"/>
-                      <p id="notice">Camera feature not available.<br/>
-                      Example image. &copy; Hans Eiskonen</p>
-                    </IonCardContent>
+                    
+                    <Collapsible id="chevron" trigger={<Trigger />} triggerWhenOpen={<Trigger2 />}>
+                      <IonCardContent id="cardContent">
+                        <p id="report">{list.content}</p>
+                        <br/>
+                        <p id="reportToggle">{masterToggle(list.masterkey)}</p>
+                        <p id="reportToggle">{callToggle(list.call)}</p>
+                        {/*<IonImg src={list.image} />*/}
+                        <IonImg src= "https://images.unsplash.com/photo-1600247250062-7bc3adb28177?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1270&q=80"/>
+                        <p id="notice">Camera feature not available.<br/>
+                        Example image. &copy; Hans Eiskonen</p>
+                      </IonCardContent>
                     </Collapsible>
                   </IonCard>
                 ))}
@@ -211,19 +212,22 @@ return (
               </IonCol>
             </IonRow>
             <IonRow>
-                <IonLabel position="stacked">
-                  Title
-                </IonLabel>
-                <IonInput id="item" value={text} placeholder="Eg. Broken stove" onIonChange={e => setText(e.detail.value!)}>
-                </IonInput>
-            </IonRow>
-            <IonRow>
               <IonCol>
                 <IonButton className="writeRecord" color={showElement ? "tertiary" : "secondary"} onClick={showWrite}>Write</IonButton>
               </IonCol>
               <IonCol>
                 <IonButton className="writeRecord" color={showElement ? "secondary" : "tertiary"} onClick={() => setShowElement(false)}>Record</IonButton>
               </IonCol>
+            </IonRow>
+            <IonRow >
+              <IonCol id="reportTitle">
+                <IonLabel>
+                  Title
+                </IonLabel>
+                <IonInput id="reportTitleText" value={text} placeholder="Eg. Broken stove" onIonChange={e => setText(e.detail.value!)}>
+                </IonInput>
+                {showError && <div className="error" >Please fill in the title</div>}
+                </IonCol>
             </IonRow>
             <IonRow className="inputchoices">
               <IonCol>
@@ -260,9 +264,28 @@ return (
               </IonCol>
             </IonRow>
             <IonRow>
-              <IonCol>
-                <IonButton color="secondary" expand="block" onClick={addReport }>
+              <IonCol size="9">
+                <IonButton
+                  color="secondary"
+                  expand="block"
+                  onClick={() => {
+                    if ( text === "" || content === "" ){
+                      setShowError(true);
+                      console.log("error")
+                    } else {
+                    addReport();
+                    console.log("lisäys")
+                  }}}>
                   Send
+                </IonButton>
+              </IonCol>
+              <IonCol size="1">
+                <IonButton color="secondary" onClick={closeModall}>
+                  <IonIcon
+                    icon={closeOutline}
+                    size="large"
+                    slot="icon-only"
+                  />
                 </IonButton>
               </IonCol>
             </IonRow>

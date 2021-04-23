@@ -2,6 +2,10 @@
     --background: #222;
   }
 
+/*.page {
+  background-color: white;
+}
+*/
 .title {
   text-align: center;
 }
@@ -14,42 +18,38 @@
   padding-bottom: 5px;
 }
 
-.emergency {
-  height: 140px;
-  padding: 0%;
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: center;
-  font-size: 13px;
-  }
-
-#phone {
-  font-weight: bold;
-}
-.inputchoices {
-  align-items: center;
-  text-align: center;
-  min-height: 25%;
-}
-
 #cardHeader {
-  padding-bottom: 0%;
+  padding: 0%;
 }
 
 #chevron {
-  padding-top: 0%;
+  padding: 0%;
 }
 
 #cardContent {
   background-color: gainsboro;
-  color: black
-  ;
+  color: black  ;
+}
+
+#report {
+  font-size: 15px;
+  padding: 10px;
 }
 
 .writeRecord {
   width: 100%;
 }
 
+#reportTitle {
+  margin-top: 10%;
+}
+
+#reportTitleText {
+  border: rgba(0, 0, 0, 0.068);
+  border-style: solid;
+  border-width: 1px;
+  
+}
 
 #write {
   padding: 5%;
@@ -62,10 +62,32 @@
   font-size: 12px;
 }
 
-#report {
-  font-size: 15px;
-  padding: 10px;
+
+.inputchoices {
+  align-items: center;
+  text-align: center;
+  min-height: 25%;
 }
+
+
 #reportToggle {
   font-size: 12px;
 }
+
+.error {
+  text-align: center;
+  color: red;
+}
+
+.emergency {
+  height: 140px;
+  padding: 0%;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  font-size: 13px;
+  }
+
+  #phone {
+    font-weight: bold;
+  }
