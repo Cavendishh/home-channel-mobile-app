@@ -47,13 +47,13 @@ const Tab5: React.FC = () => {
         <IonCard>
           <IonCardTitle><p>Emergency contact details</p></IonCardTitle>
           <IonCardContent >
-          <IonText color="primary"><h2>24/7</h2>
-            <p><IonIcon class="icon" icon={callOutline}></IonIcon> +358 987654321</p>
+          <IonText ><h2>24/7</h2> </IonText>
+          <IonText color="secondary" > <p ><IonIcon class="icon" icon={callOutline}></IonIcon> +358 987654321</p>
             </IonText>
           </IonCardContent>
         </IonCard>
        
-            <Link to='/tab0' className="logout"><IonButton color="secondary" expand="block">Logout</IonButton></Link>
+            <Link to='/tab0' className="logout"><IonButton id="logout" color="secondary" expand="block">Logout</IonButton></Link>
           </IonGrid>       
       </IonContent>
       

@@ -85,13 +85,7 @@ const Tab3: React.FC = () => {
             
           </IonToolbar>
         </IonHeader>
-         
-         <IonItem>
-          
-          <IonTitle className="title">MEETING ROOM</IonTitle>
-          
-        </IonItem>
-        
+               
         <IonPopover
           cssClass="my-custom-class"
           event={popoverState.event}
@@ -136,7 +130,7 @@ const Tab3: React.FC = () => {
               setShowPopover({ showPopover: false, event: e });
             }}}
           >
-            Send
+            Add post
           </IonButton>
         </IonPopover>
             <IonGrid>
@@ -148,7 +142,7 @@ const Tab3: React.FC = () => {
           }}
           color="secondary"
         >
-          Add new
+          Add a new post
         </IonButton>
         </IonGrid>
         <IonList>
@@ -284,10 +278,24 @@ const Tab3: React.FC = () => {
                       </IonCol>
                     </IonRow>
                   }
+                  triggerWhenOpen={
+                    <IonRow>
+                      <IonCol >
+                        <IonCardSubtitle className="subtitle">
+                          A table for sale{" "}
+                        </IonCardSubtitle>
+                      </IonCol>
+                      <IonCol size="1">
+                        <IonIcon 
+                          id="chevron"
+                          icon={chevronUpCircleOutline}
+                        ></IonIcon>
+                      </IonCol>
+                    </IonRow>
+                  }
                 >
                   <IonCardContent>
-                    A table for sale. Almost new table 80x120. 10 eur. Ask more
-                    by message 04000040404
+                    There will ba a birthday party in apartment A34 this Saturday till 9 PM. Apologies for any inconvenience
                   </IonCardContent>
                 </Collapsible>
               </IonCol>
@@ -322,10 +330,24 @@ const Tab3: React.FC = () => {
                       </IonCol>
                     </IonRow>
                   }
+                  triggerWhenOpen={
+                    <IonRow>
+                      <IonCol >
+                        <IonCardSubtitle className="subtitle">
+                          A table for sale{" "}
+                        </IonCardSubtitle>
+                      </IonCol>
+                      <IonCol size="1">
+                        <IonIcon 
+                          id="chevron"
+                          icon={chevronUpCircleOutline}
+                        ></IonIcon>
+                      </IonCol>
+                    </IonRow>
+                  }
                 >
                   <IonCardContent>
-                    A table for sale. Almost new table 80x120. 10 eur. Ask more
-                    by message 04000040404
+                    I can take your dog for a walk every workday after 2 PM. Leave your message 040067895 and ask more
                   </IonCardContent>
                 </Collapsible>
               </IonCol>

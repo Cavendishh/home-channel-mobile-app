@@ -5,3 +5,7 @@ p, h2 {
 .logout {
     color:white;
 }
+
+a:link {
+    text-decoration: none;
+}
