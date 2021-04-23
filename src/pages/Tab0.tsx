@@ -178,7 +178,7 @@ const Tab0: React.FC = () => {
               </IonCol>
             </IonRow>
             <IonButton type="submit" color="secondary" expand="block">
-              Submit
+              Register
             </IonButton>
           </form>
         </IonGrid>
