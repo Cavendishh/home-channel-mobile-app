@@ -269,12 +269,10 @@ return (
                   color="secondary"
                   expand="block"
                   onClick={() => {
-                    if ( text === "" || content === "" ){
+                    if ( text === "" ){
                       setShowError(true);
-                      console.log("error")
                     } else {
                     addReport();
-                    console.log("lisäys")
                   }}}>
                   Send
                 </IonButton>
