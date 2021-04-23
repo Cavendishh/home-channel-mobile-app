@@ -5,15 +5,12 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
-  IonCol,
   IonContent,
   IonGrid,
   IonHeader,
   IonIcon,
   IonItem,
-  IonLabel,
   IonPage,
-  IonRow,
   IonText,
   IonTitle,
   IonToolbar,
@@ -117,7 +114,7 @@ const Tab1: React.FC = () => {
           <IonCard>
             <IonCardHeader>
               <IonCardSubtitle color="danger">Important</IonCardSubtitle>
-              <IonCardSubtitle>week 16 / 2021</IonCardSubtitle>
+              <IonCardSubtitle>Week 16 / 2021</IonCardSubtitle>
             </IonCardHeader>
             <Collapsible trigger={<Trigger1 />} triggerWhenOpen={<Open1 />}>
               <IonCardContent>
@@ -138,7 +135,7 @@ const Tab1: React.FC = () => {
 
           <IonCard>
             <IonCardHeader>
-              <IonCardSubtitle>week 17- week 20 / 2021</IonCardSubtitle>
+              <IonCardSubtitle>Week 17 - Week 20 / 2021</IonCardSubtitle>
             </IonCardHeader>
             <Collapsible trigger={<Trigger2 />} triggerWhenOpen={<Open2 />}>
               <IonCardContent>
@@ -162,7 +159,7 @@ const Tab1: React.FC = () => {
           <IonCard>
             <IonCardHeader>
               <IonCardSubtitle color="warning">Important</IonCardSubtitle>
-              <IonCardSubtitle>26/4/2021, 15:00-17:00</IonCardSubtitle>
+              <IonCardSubtitle>26/4/2021, 15:00 - 17:00</IonCardSubtitle>
             </IonCardHeader>
             <Collapsible trigger={<Trigger3 />} triggerWhenOpen={<Open3 />}>
               <IonCardContent>
@@ -178,7 +175,7 @@ const Tab1: React.FC = () => {
 
           <IonCard>
             <IonCardHeader>
-              <IonCardSubtitle>8/5/2021, 12:00-17:00</IonCardSubtitle>
+              <IonCardSubtitle>8/5/2021, 12:00 - 17:00</IonCardSubtitle>
             </IonCardHeader>
             <Collapsible trigger={<Trigger4 />} triggerWhenOpen={<Open4 />}>
               <IonCardContent>
