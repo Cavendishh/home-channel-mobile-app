@@ -16,16 +16,6 @@ ion-row {
   text-align: center;
 }
 
-/* ion-button {
-  --ion-color-danger: #6558F5;
-  --ion-color-danger-rgb: 101, 88, 245;
-  --ion-color-danger-contrast: #ffffff;
-  --ion-color-danger-contrast-rgb: 255, 255, 255;
-  --ion-color-danger-shade: #564AD9;
-  --ion-color-danger-tint: #756AF6;
-
-} */
-
 ion-title {
   text-align: center;
 }
