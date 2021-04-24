@@ -190,7 +190,7 @@ const Tab0: React.FC = () => {
           <IonFooter>
             <IonToolbar>
               <IonTitle id="copy">
-                Copyright ©️ 2021 Team Learning Spirit
+                Copyright ©️ 2021 Team Making Life Simpler
               </IonTitle>
             </IonToolbar>
           </IonFooter>
