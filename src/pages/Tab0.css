@@ -6,6 +6,10 @@
 
 ion-item{
     --border-color: gainsboro;
- }
+}
+
+#tabBar {
+    display: none;
+}
 
 
