@@ -12,4 +12,9 @@ ion-item{
     display: none;
 }
 
+#copy {
+    font-size: 15px;
+    font-weight: 400;
+}
+
 

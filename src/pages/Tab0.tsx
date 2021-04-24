@@ -7,6 +7,7 @@ import {
   IonCheckbox,
   IonCol,
   IonContent,
+  IonFooter,
   IonGrid,
   IonHeader,
   IonIcon,
@@ -123,7 +124,9 @@ const Tab0: React.FC = () => {
               </IonCol>
             </IonRow>
 
-            <IonItemDivider>Create Password*</IonItemDivider>
+            <IonItemDivider>
+            <IonLabel color="dark">Create Password*</IonLabel>
+            </IonItemDivider>
             <IonRow>
               <IonCol>
                 <IonItem lines="full">
@@ -147,7 +150,9 @@ const Tab0: React.FC = () => {
               </IonCol>
             </IonRow>
 
-            <IonItemDivider>Rewrite Password*</IonItemDivider>
+            <IonItemDivider>
+            <IonLabel color="dark">Rewrite Password*</IonLabel>
+            </IonItemDivider>
             <IonRow>
               <IonCol>
                 <IonItem lines="full">
@@ -180,7 +185,16 @@ const Tab0: React.FC = () => {
             <IonButton type="submit" color="secondary" expand="block">
               Register
             </IonButton>
+           
           </form>
+          <IonFooter>
+            <IonToolbar>
+              <IonTitle id="copy">
+                Copyright ©️ 2021 Team Learning Spirit
+              </IonTitle>
+            </IonToolbar>
+          </IonFooter>
+          
         </IonGrid>
       </IonContent>
     </IonPage>
