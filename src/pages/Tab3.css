@@ -2,7 +2,7 @@
     padding: 5px;
 }
 .my-custom-class {
-   --width: 90%;
+    --width: 90%;
 }
 .title {
     text-align: center;
@@ -10,7 +10,7 @@
 
 .collapsible {
     background-color: white;
-  color: white;
+    color: white;
 }
 
 

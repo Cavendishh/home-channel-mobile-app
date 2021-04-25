@@ -1,6 +1,6 @@
+import React, { useState } from 'react'
 import {
   IonContent,
-  IonHeader,
   IonInput,
   IonPage,
   IonIcon,
@@ -10,8 +10,6 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardSubtitle,
-  IonTitle,
-  IonToolbar,
   IonPopover,
   IonButton,
   IonCard,
@@ -21,73 +19,57 @@ import {
   IonItem,
   IonLabel,
   IonItemDivider,
-  IonText,
-} from "@ionic/react";
-
-import React, { useState } from "react";
-import Collapsible from "react-collapsible";
+} from '@ionic/react'
 import {
   personOutline,
   chevronDownCircleOutline,
   chevronUpCircleOutline,
-} from "ionicons/icons";
-
-import "./Tab3.css";
+} from 'ionicons/icons'
+import Header from '../components/Header'
+import Collapsible from 'react-collapsible'
+import './Tab3.css'
 
 export interface Item {
-  id: number;
-  name: string;
-  title: string;
-  text: string;
+  id: number
+  name: string
+  title: string
+  text: string
 }
 
 const Tab3: React.FC = () => {
   const [popoverState, setShowPopover] = useState({
     showPopover: false,
     event: undefined,
-  });
+  })
 
-  const [text, setText] = useState("");
-  const [name, setName] = useState("");
-  const [title, setTitle] = useState("");
-  const [items, setItems] = useState<Item[]>([]);
-  const [state, setState] = useState({});
-  const [showError, setShowError] = useState(false);
-
+  const [text, setText] = useState('')
+  const [name, setName] = useState('')
+  const [title, setTitle] = useState('')
+  const [items, setItems] = useState<Item[]>([])
+  const [state, setState] = useState({})
+  const [showError, setShowError] = useState(false)
 
   const addItem = () => {
-    const nextId = Math.random();
+    const nextId = Math.random()
     const item: Item = {
       id: nextId,
       name,
       title,
       text,
-    };
-    setItems([item, ...items]);
-    setName("");
-    setTitle("");
-    setText("");
-  };
+    }
+    setItems([item, ...items])
+    setName('')
+    setTitle('')
+    setText('')
+  }
 
   return (
     <IonPage>
       <IonContent>
-        <IonHeader>
-          <IonToolbar>
-            <IonText color="primary">
-              <h2>
-                <IonTitle class="title">
-                  <img alt="building" src="../assets/home.jpg" />
-                  HOME CHANNEL
-                </IonTitle>
-              </h2>
-            </IonText>
-            
-          </IonToolbar>
-        </IonHeader>
-               
+        <Header />
+
         <IonPopover
-          cssClass="my-custom-class"
+          cssClass='my-custom-class'
           event={popoverState.event}
           isOpen={popoverState.showPopover}
           onDidDismiss={() =>
@@ -97,63 +79,62 @@ const Tab3: React.FC = () => {
           <IonItemDivider>New post</IonItemDivider>
 
           <IonItem>
-            <IonLabel position={"floating"}>Name</IonLabel>
+            <IonLabel position={'floating'}>Name</IonLabel>
             <IonInput
               value={name}
               onIonChange={(e) => setName(e.detail.value!)}
             ></IonInput>
           </IonItem>
           <IonItem>
-            <IonLabel position={"floating"}>Title</IonLabel>
+            <IonLabel position={'floating'}>Title</IonLabel>
             <IonInput
               value={title}
               onIonChange={(e) => setTitle(e.detail.value!)}
             ></IonInput>
           </IonItem>
           <IonItem>
-            <IonLabel position={"floating"}>Message</IonLabel>
+            <IonLabel position={'floating'}>Message</IonLabel>
             <IonTextarea
               value={text}
               onIonChange={(e) => setText(e.detail.value!)}
             ></IonTextarea>
           </IonItem>
-          {showError && <div className="error" >All fields are required</div>}
+          {showError && <div className='error'>All fields are required</div>}
           <IonButton
-            expand="block"
+            expand='block'
             onClick={(e: any) => {
-              if (name===""|| title===""||text===""){
-                setShowError(true);
-                
+              if (name === '' || title === '' || text === '') {
+                setShowError(true)
+              } else {
+                addItem()
+                setShowPopover({ showPopover: false, event: e })
               }
-              else{
-              addItem();
-              setShowPopover({ showPopover: false, event: e });
-            }}}
+            }}
           >
             Add post
           </IonButton>
         </IonPopover>
-            <IonGrid>
-        <IonButton
-          expand="block"
-          onClick={(e: any) => {
-            e.persist();
-            setShowPopover({ showPopover: true, event: e });
-          }}
-          color="secondary"
-        >
-          Add a new post
-        </IonButton>
+        <IonGrid>
+          <IonButton
+            expand='block'
+            onClick={(e: any) => {
+              e.persist()
+              setShowPopover({ showPopover: true, event: e })
+            }}
+            color='secondary'
+          >
+            Add a new post
+          </IonButton>
         </IonGrid>
         <IonList>
           {items.map((item, i) => (
             <IonGrid>
-              <IonCard class="card" key={i}>
+              <IonCard class='card' key={i}>
                 <IonRow>
                   <IonCardHeader>
                     <IonCardTitle>
                       <IonCol>
-                        <IonIcon class="icon" icon={personOutline}></IonIcon>
+                        <IonIcon class='icon' icon={personOutline}></IonIcon>
                       </IonCol>
                       <IonCol>{item.name}</IonCol>
                     </IonCardTitle>
@@ -162,28 +143,37 @@ const Tab3: React.FC = () => {
                 <IonRow>
                   <IonCol>
                     <Collapsible
-                      slot="end"
-                      id="a"
+                      slot='end'
+                      id='a'
                       trigger={
                         <IonRow>
                           <IonCol>
-                            <IonCardSubtitle className="subtitle">{item.title}</IonCardSubtitle>
+                            <IonCardSubtitle className='subtitle'>
+                              {item.title}
+                            </IonCardSubtitle>
                           </IonCol>
-                          <IonCol size="1">
-                            <IonIcon id="chevron" icon={chevronDownCircleOutline}></IonIcon>
+                          <IonCol size='1'>
+                            <IonIcon
+                              id='chevron'
+                              icon={chevronDownCircleOutline}
+                            ></IonIcon>
                           </IonCol>
                         </IonRow>
                       }
                       triggerWhenOpen={
                         <IonRow>
                           <IonCol>
-                            <IonCardSubtitle className="subtitle">{item.title}</IonCardSubtitle>
+                            <IonCardSubtitle className='subtitle'>
+                              {item.title}
+                            </IonCardSubtitle>
                           </IonCol>
-                          <IonCol size="1">
-                            <IonIcon id="chevron" icon={chevronUpCircleOutline}></IonIcon>
+                          <IonCol size='1'>
+                            <IonIcon
+                              id='chevron'
+                              icon={chevronUpCircleOutline}
+                            ></IonIcon>
                           </IonCol>
                         </IonRow>
-
                       }
                     >
                       <IonCardContent>{item.text}</IonCardContent>
@@ -196,12 +186,12 @@ const Tab3: React.FC = () => {
         </IonList>
 
         <IonGrid>
-          <IonCard class="card">
+          <IonCard class='card'>
             <IonRow>
               <IonCardHeader>
                 <IonCardTitle>
                   <IonCol>
-                    <IonIcon class="icon" icon={personOutline}></IonIcon>
+                    <IonIcon class='icon' icon={personOutline}></IonIcon>
                   </IonCol>
                   <IonCol>Mike Simons</IonCol>
                 </IonCardTitle>
@@ -212,14 +202,14 @@ const Tab3: React.FC = () => {
                 <Collapsible
                   trigger={
                     <IonRow>
-                      <IonCol >
-                        <IonCardSubtitle className="subtitle">
-                          A table for sale{" "}
+                      <IonCol>
+                        <IonCardSubtitle className='subtitle'>
+                          A table for sale{' '}
                         </IonCardSubtitle>
                       </IonCol>
-                      <IonCol size="1">
-                        <IonIcon 
-                          id="chevron"
+                      <IonCol size='1'>
+                        <IonIcon
+                          id='chevron'
                           icon={chevronDownCircleOutline}
                         ></IonIcon>
                       </IonCol>
@@ -227,14 +217,14 @@ const Tab3: React.FC = () => {
                   }
                   triggerWhenOpen={
                     <IonRow>
-                      <IonCol >
-                        <IonCardSubtitle className="subtitle">
-                          A table for sale{" "}
+                      <IonCol>
+                        <IonCardSubtitle className='subtitle'>
+                          A table for sale{' '}
                         </IonCardSubtitle>
                       </IonCol>
-                      <IonCol size="1">
-                        <IonIcon 
-                          id="chevron"
+                      <IonCol size='1'>
+                        <IonIcon
+                          id='chevron'
                           icon={chevronUpCircleOutline}
                         ></IonIcon>
                       </IonCol>
@@ -249,12 +239,12 @@ const Tab3: React.FC = () => {
               </IonCol>
             </IonRow>
           </IonCard>
-          <IonCard class="card">
+          <IonCard class='card'>
             <IonRow>
               <IonCardHeader>
                 <IonCardTitle>
                   <IonCol>
-                    <IonIcon class="icon" icon={personOutline}></IonIcon>
+                    <IonIcon class='icon' icon={personOutline}></IonIcon>
                   </IonCol>
                   <IonCol>Anna Kivinen</IonCol>
                 </IonCardTitle>
@@ -265,14 +255,14 @@ const Tab3: React.FC = () => {
                 <Collapsible
                   trigger={
                     <IonRow>
-                      <IonCol >
-                        <IonCardSubtitle className="subtitle">
+                      <IonCol>
+                        <IonCardSubtitle className='subtitle'>
                           Having party this saturday
                         </IonCardSubtitle>
                       </IonCol>
-                      <IonCol size="1">
+                      <IonCol size='1'>
                         <IonIcon
-                          id="chevron"
+                          id='chevron'
                           icon={chevronDownCircleOutline}
                         ></IonIcon>
                       </IonCol>
@@ -280,14 +270,14 @@ const Tab3: React.FC = () => {
                   }
                   triggerWhenOpen={
                     <IonRow>
-                      <IonCol >
-                        <IonCardSubtitle className="subtitle">
-                          A table for sale{" "}
+                      <IonCol>
+                        <IonCardSubtitle className='subtitle'>
+                          A table for sale{' '}
                         </IonCardSubtitle>
                       </IonCol>
-                      <IonCol size="1">
-                        <IonIcon 
-                          id="chevron"
+                      <IonCol size='1'>
+                        <IonIcon
+                          id='chevron'
                           icon={chevronUpCircleOutline}
                         ></IonIcon>
                       </IonCol>
@@ -295,18 +285,19 @@ const Tab3: React.FC = () => {
                   }
                 >
                   <IonCardContent>
-                    There will ba a birthday party in apartment A34 this Saturday till 9 PM. Apologies for any inconvenience
+                    There will ba a birthday party in apartment A34 this
+                    Saturday till 9 PM. Apologies for any inconvenience
                   </IonCardContent>
                 </Collapsible>
               </IonCol>
             </IonRow>
           </IonCard>
-          <IonCard class="card">
+          <IonCard class='card'>
             <IonRow>
               <IonCardHeader>
                 <IonCardTitle>
                   <IonCol>
-                    <IonIcon class="icon" icon={personOutline}></IonIcon>
+                    <IonIcon class='icon' icon={personOutline}></IonIcon>
                   </IonCol>
                   <IonCol>Monica Daves</IonCol>
                 </IonCardTitle>
@@ -317,14 +308,14 @@ const Tab3: React.FC = () => {
                 <Collapsible
                   trigger={
                     <IonRow>
-                      <IonCol size="11">
-                        <IonCardSubtitle className="subtitle">
-                          Dog sitter{" "}
+                      <IonCol size='11'>
+                        <IonCardSubtitle className='subtitle'>
+                          Dog sitter{' '}
                         </IonCardSubtitle>
                       </IonCol>
-                      <IonCol size="1">
+                      <IonCol size='1'>
                         <IonIcon
-                          id="chevron"
+                          id='chevron'
                           icon={chevronDownCircleOutline}
                         ></IonIcon>
                       </IonCol>
@@ -332,14 +323,14 @@ const Tab3: React.FC = () => {
                   }
                   triggerWhenOpen={
                     <IonRow>
-                      <IonCol >
-                        <IonCardSubtitle className="subtitle">
-                          A table for sale{" "}
+                      <IonCol>
+                        <IonCardSubtitle className='subtitle'>
+                          A table for sale{' '}
                         </IonCardSubtitle>
                       </IonCol>
-                      <IonCol size="1">
-                        <IonIcon 
-                          id="chevron"
+                      <IonCol size='1'>
+                        <IonIcon
+                          id='chevron'
                           icon={chevronUpCircleOutline}
                         ></IonIcon>
                       </IonCol>
@@ -347,7 +338,8 @@ const Tab3: React.FC = () => {
                   }
                 >
                   <IonCardContent>
-                    I can take your dog for a walk every workday after 2 PM. Leave your message 040067895 and ask more
+                    I can take your dog for a walk every workday after 2 PM.
+                    Leave your message 040067895 and ask more
                   </IonCardContent>
                 </Collapsible>
               </IonCol>
@@ -356,7 +348,7 @@ const Tab3: React.FC = () => {
         </IonGrid>
       </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
-export default Tab3;
+export default Tab3

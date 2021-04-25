@@ -262,3 +262,7 @@ ion-tab-bar {
 .tab-bar-title {
   font-size: 9px;
 }
+
+.imgIcon {
+  height: 30px;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   IonCard,
   IonCardContent,
@@ -7,113 +7,100 @@ import {
   IonCardTitle,
   IonContent,
   IonGrid,
-  IonHeader,
   IonIcon,
   IonItem,
   IonPage,
-  IonText,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
-import Collapsible from "react-collapsible";
-import "./Tab1.css";
+} from '@ionic/react'
+import Collapsible from 'react-collapsible'
+import './Tab1.css'
 import {
   chevronDownCircleOutline,
   chevronUpCircleOutline,
-} from "ionicons/icons";
+} from 'ionicons/icons'
+
+import Header from '../components/Header'
 
 const Tab1: React.FC = () => {
   const Trigger1 = () => (
-    <IonItem lines="none">
-      <IonIcon icon={chevronDownCircleOutline} id="chevron" slot="end" />
+    <IonItem lines='none'>
+      <IonIcon icon={chevronDownCircleOutline} id='chevron' slot='end' />
       <IonCardTitle>
-        <h2 className="window-text">Window Inspection</h2>
+        <h2 className='window-text'>Window Inspection</h2>
       </IonCardTitle>
     </IonItem>
-  );
+  )
 
   const Open1 = () => (
-    <IonItem lines="none">
-      <IonIcon icon={chevronUpCircleOutline} id="chevron" slot="end" />
+    <IonItem lines='none'>
+      <IonIcon icon={chevronUpCircleOutline} id='chevron' slot='end' />
       <IonCardTitle>
-        <h2 className="window-text">Window Inspection</h2>
+        <h2 className='window-text'>Window Inspection</h2>
       </IonCardTitle>
     </IonItem>
-  );
+  )
 
   const Trigger2 = () => (
-    <IonItem lines="none">
-      <IonIcon icon={chevronDownCircleOutline} slot="end" />
+    <IonItem lines='none'>
+      <IonIcon icon={chevronDownCircleOutline} slot='end' />
       <IonCardTitle>
         <h2>Sauna 1 Closed</h2>
       </IonCardTitle>
     </IonItem>
-  );
+  )
 
   const Open2 = () => (
-    <IonItem lines="none">
-      <IonIcon icon={chevronUpCircleOutline} slot="end" />
+    <IonItem lines='none'>
+      <IonIcon icon={chevronUpCircleOutline} slot='end' />
       <IonCardTitle>
         <h2>Sauna 1 Closed</h2>
       </IonCardTitle>
     </IonItem>
-  );
+  )
 
   const Trigger3 = () => (
-    <IonItem lines="none">
-      <IonIcon icon={chevronDownCircleOutline} slot="end" />
+    <IonItem lines='none'>
+      <IonIcon icon={chevronDownCircleOutline} slot='end' />
       <IonCardTitle>
         <h2>Water Cut</h2>
       </IonCardTitle>
     </IonItem>
-  );
+  )
 
   const Open3 = () => (
-    <IonItem lines="none">
-      <IonIcon icon={chevronUpCircleOutline} slot="end" />
+    <IonItem lines='none'>
+      <IonIcon icon={chevronUpCircleOutline} slot='end' />
       <IonCardTitle>
         <h2>Water Cut</h2>
       </IonCardTitle>
     </IonItem>
-  );
+  )
 
   const Trigger4 = () => (
-    <IonItem lines="none">
-      <IonIcon icon={chevronDownCircleOutline} slot="end" />
+    <IonItem lines='none'>
+      <IonIcon icon={chevronDownCircleOutline} slot='end' />
       <IonCardTitle>
         <h2>Yard Work Gathering</h2>
       </IonCardTitle>
     </IonItem>
-  );
+  )
 
   const Open4 = () => (
-    <IonItem lines="none">
-      <IonIcon icon={chevronUpCircleOutline} slot="end" />
+    <IonItem lines='none'>
+      <IonIcon icon={chevronUpCircleOutline} slot='end' />
       <IonCardTitle>
         <h2>Yard Work Gathering</h2>
       </IonCardTitle>
     </IonItem>
-  );
+  )
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonText color="secondary">
-            <h2>
-              <IonTitle class="title">
-                <img alt="building" src="../assets/home.jpg" />
-                HOME CHANNEL
-              </IonTitle>
-            </h2>
-          </IonText>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent className="ion-padding">
+      <Header />
+      <IonContent className='ion-padding'>
         <IonGrid>
           <IonCard>
             <IonCardHeader>
-              <IonCardSubtitle color="danger">Important</IonCardSubtitle>
+              <IonCardSubtitle color='danger'>Important</IonCardSubtitle>
               <IonCardSubtitle>Week 16 / 2021</IonCardSubtitle>
             </IonCardHeader>
             <Collapsible trigger={<Trigger1 />} triggerWhenOpen={<Open1 />}>
@@ -158,7 +145,7 @@ const Tab1: React.FC = () => {
 
           <IonCard>
             <IonCardHeader>
-              <IonCardSubtitle color="warning">Important</IonCardSubtitle>
+              <IonCardSubtitle color='warning'>Important</IonCardSubtitle>
               <IonCardSubtitle>26/4/2021, 15:00 - 17:00</IonCardSubtitle>
             </IonCardHeader>
             <Collapsible trigger={<Trigger3 />} triggerWhenOpen={<Open3 />}>
@@ -196,7 +183,7 @@ const Tab1: React.FC = () => {
         </IonGrid>
       </IonContent>
     </IonPage>
-  );
-};
+  )
+}
 
-export default Tab1;
+export default Tab1
