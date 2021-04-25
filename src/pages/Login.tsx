@@ -20,7 +20,7 @@ import {
   IonToolbar,
 } from '@ionic/react'
 import { warningOutline } from 'ionicons/icons'
-import './Tab0.css'
+import './Login.css'
 import { Redirect } from 'react-router-dom'
 import Header from '../components/Header'
 
@@ -33,7 +33,7 @@ type FormValues = {
   rememberMe: boolean
 }
 
-const Tab0: React.FC = () => {
+const Login: React.FC = () => {
   //These hooks are to make the login after registering and validating the inputs. Without backend, one has to go around the usual way
   const [allowLogin, setAllowLogin] = useState(false)
   //react hook form components for the form validation
@@ -187,4 +187,4 @@ const Tab0: React.FC = () => {
   )
 }
 
-export default Tab0
+export default Login

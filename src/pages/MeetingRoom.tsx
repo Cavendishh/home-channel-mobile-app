@@ -27,7 +27,7 @@ import {
 } from 'ionicons/icons'
 import Header from '../components/Header'
 import Collapsible from 'react-collapsible'
-import './Tab3.css'
+import './MeetingRoom.css'
 
 export interface Item {
   id: number
@@ -36,7 +36,7 @@ export interface Item {
   text: string
 }
 
-const Tab3: React.FC = () => {
+const MeetingRoom: React.FC = () => {
   const [popoverState, setShowPopover] = useState({
     showPopover: false,
     event: undefined,
@@ -351,4 +351,4 @@ const Tab3: React.FC = () => {
   )
 }
 
-export default Tab3
+export default MeetingRoom

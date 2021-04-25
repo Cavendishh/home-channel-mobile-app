@@ -9,13 +9,19 @@ import {
   IonTabs,
 } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
-import { business, calendarSharp, chatbubblesSharp, hammer, notifications } from 'ionicons/icons'
-import Tab0 from "./pages/Tab0";
-import Tab1 from './pages/Tab1'
-import Tab2 from './pages/Tab2'
-import Tab3 from './pages/Tab3'
-import Tab4 from './pages/Tab4'
-import Tab5 from './pages/Tab5'
+import {
+  business,
+  calendarSharp,
+  chatbubblesSharp,
+  hammer,
+  notifications,
+} from 'ionicons/icons'
+import Login from './pages/Login'
+import Notifications from './pages/Notifications'
+import Reserve from './pages/Reserve'
+import Meetingroom from './pages/MeetingRoom'
+import FaultReport from './pages/FaultReport'
+import PropertyInfo from './pages/PropertyInfo'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
@@ -41,46 +47,62 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab0">
-            <Tab0 />
+          <Route exact path='/login'>
+            <Login />
           </Route>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path='/notifications'>
+            <Notifications />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route exact path='/reserve'>
+            <Reserve />
           </Route>
-          <Route exact path="/tab3">
-            <Tab3 />
+          <Route exact path='/meetingroom'>
+            <Meetingroom />
           </Route>
-          <Route exact path="/tab4">
-            <Tab4 />
+          <Route exact path='/faultreport'>
+            <FaultReport />
           </Route>
-          <Route path="/tab5">
-            <Tab5 />
+          <Route path='/propertyinfo'>
+            <PropertyInfo />
           </Route>
-          <Route exact path="/">
-            <Redirect to="/tab0" />
+          <Route exact path='/'>
+            <Redirect to='/login' />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom" id="tabBar">
-          <IonTabButton tab="tab1" href="/tab1" className='tab-bar-btn'>
+        <IonTabBar slot='bottom' id='tabBar'>
+          <IonTabButton
+            tab='notifications'
+            href='/notifications'
+            className='tab-bar-btn'
+          >
             <IonIcon icon={notifications} />
             <IonLabel className='tab-bar-title'>Notifications</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2" className='tab-bar-btn'>
+          <IonTabButton tab='reserve' href='/reserve' className='tab-bar-btn'>
             <IonIcon icon={calendarSharp} />
             <IonLabel className='tab-bar-title'>Reserve</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3" className='tab-bar-btn'>
+          <IonTabButton
+            tab='meetingroom'
+            href='/meetingroom'
+            className='tab-bar-btn'
+          >
             <IonIcon icon={chatbubblesSharp} />
             <IonLabel className='tab-bar-title'>Meeting Room</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab4" href="/tab4" className='tab-bar-btn'>
-            <IonIcon icon={hammer}/>
+          <IonTabButton
+            tab='faultreport'
+            href='/faultreport'
+            className='tab-bar-btn'
+          >
+            <IonIcon icon={hammer} />
             <IonLabel className='tab-bar-title'>Fault Report</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab5" href="/tab5" className='tab-bar-btn'>
+          <IonTabButton
+            tab='propertyinfo'
+            href='/propertyinfo'
+            className='tab-bar-btn'
+          >
             <IonIcon icon={business} />
             <IonLabel className='tab-bar-title'>Property Info</IonLabel>
           </IonTabButton>

@@ -13,12 +13,12 @@ import {
   IonToolbar,
 } from '@ionic/react'
 import { callOutline } from 'ionicons/icons'
-import './Tab5.css'
+import './PropertyInfo.css'
 import 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 
-const Tab5: React.FC = () => {
+const PropertyInfo: React.FC = () => {
   return (
     <IonPage>
       <Header />
@@ -66,7 +66,7 @@ const Tab5: React.FC = () => {
             </IonCardContent>
           </IonCard>
 
-          <Link to='/tab0' className='logout'>
+          <Link to='/login' className='logout'>
             <IonButton id='logout' color='secondary' expand='block'>
               Logout
             </IonButton>
@@ -77,4 +77,4 @@ const Tab5: React.FC = () => {
   )
 }
 
-export default Tab5
+export default PropertyInfo

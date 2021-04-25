@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import './Tab2.css'
 import {
   IonContent,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
   IonButton,
   IonGrid,
   IonText,
@@ -15,6 +11,7 @@ import {
 } from '@ionic/react'
 import { arrowBackOutline, arrowForwardOutline, calendar } from 'ionicons/icons'
 import Header from '../components/Header'
+import './Reserve.css'
 
 const Reserve: React.FC = () => {
   const today = new Date()

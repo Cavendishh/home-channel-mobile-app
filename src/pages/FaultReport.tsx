@@ -29,7 +29,7 @@ import {
   chevronUpCircleOutline,
   closeOutline,
 } from 'ionicons/icons'
-import './Tab4.css'
+import './FaultReport.css'
 import Collapsible from 'react-collapsible'
 import { CameraResultType, Camera } from '@capacitor/core'
 import Header from '../components/Header'
@@ -72,7 +72,7 @@ async function takePicture() {
   }
 }
 
-const Tab4: React.FC = () => {
+const FaultReport: React.FC = () => {
   const [showModal, setShowModal] = useState(false)
   const [showElement, setShowElement] = useState(true)
   const [showNotice, setShowNotice] = useState(false)
@@ -342,4 +342,4 @@ const Tab4: React.FC = () => {
   )
 }
 
-export default Tab4
+export default FaultReport

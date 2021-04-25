@@ -12,7 +12,7 @@ import {
   IonPage,
 } from '@ionic/react'
 import Collapsible from 'react-collapsible'
-import './Tab1.css'
+import './Notifications.css'
 import {
   chevronDownCircleOutline,
   chevronUpCircleOutline,
@@ -20,7 +20,7 @@ import {
 
 import Header from '../components/Header'
 
-const Tab1: React.FC = () => {
+const Notifications: React.FC = () => {
   const Trigger1 = () => (
     <IonItem lines='none'>
       <IonIcon icon={chevronDownCircleOutline} id='chevron' slot='end' />
@@ -186,4 +186,4 @@ const Tab1: React.FC = () => {
   )
 }
 
-export default Tab1
+export default Notifications
