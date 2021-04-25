@@ -55,7 +55,7 @@ const Login: React.FC = () => {
       <IonContent className='ion-padding'>
         <IonGrid>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <img alt='building' src='../assets/img/test.jpg' />
+            <img alt='building' src='../assets/img/loginImg.jpg' />
 
             <IonItemDivider>
               <IonLabel className='ion-text-wrap' color='dark'>
