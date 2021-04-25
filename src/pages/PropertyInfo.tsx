@@ -24,11 +24,6 @@ const PropertyInfo: React.FC = () => {
       <Header />
       <IonContent>
         <IonGrid>
-          <IonHeader collapse='condense'>
-            <IonToolbar>
-              <IonTitle size='large'>Property Info</IonTitle>
-            </IonToolbar>
-          </IonHeader>
           <IonCard>
             <IonCardTitle>
               <p>Property Info</p>
